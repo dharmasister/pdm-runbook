@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDM Runbook — Day in the Life of a Term</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="site-title">PDM Runbook</h1>
+                <p class="site-subtitle">Day in the Life of a Term</p>
+            </div>
+            <div class="header-right">
+                <div class="persona-selector">
+                    <span class="persona-label">Viewing as:</span>
+                    <div class="persona-badges">
+                        <button class="persona-badge active" data-persona="pdm">PDM</button>
+                        <button class="persona-badge disabled" data-persona="adm" title="Coming Soon">ADM</button>
+                        <button class="persona-badge disabled" data-persona="po" title="Coming Soon">PO</button>
+                        <button class="persona-badge disabled" data-persona="pl" title="Coming Soon">PL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="timeline-labels">
+                <span class="timeline-label-start">Start of Term</span>
+                <span class="timeline-label-end">End of Term</span>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-nodes">
+                    <button class="timeline-node active" data-sprint="sprint-1">
+                        <span class="node-dot"></span>
+                        <span class="node-label">S1</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-2">
+                        <span class="node-dot"></span>
+                        <span class="node-label">S2</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-3">
+                        <span class="node-dot"></span>
+                        <span class="node-label">S3</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-4">
+                        <span class="node-dot"></span>
+                        <span class="node-label">S4</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-5">
+                        <span class="node-dot"></span>
+                        <span class="node-label">S5</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-6-ia">
+                        <span class="node-dot"></span>
+                        <span class="node-label">I&A</span>
+                    </button>
+                </div>
+            </div>
+            <button class="view-all-btn" id="viewAllBtn">View All Sprints</button>
+        </section>
+
+        <!-- Sprint Header -->
+        <section class="sprint-header" id="sprintHeader">
+            <h2 class="sprint-title" id="sprintTitle">Sprint 1</h2>
+            <div class="sprint-meta">
+                <span class="sprint-count" id="sprintCount"></span>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="ti-planning">
+                <span class="filter-icon">📋</span> TI Planning
+            </button>
+            <button class="filter-btn" data-category="delivery">
+                <span class="filter-icon">🚀</span> Delivery
+            </button>
+            <button class="filter-btn" data-category="finances">
+                <span class="filter-icon">💰</span> Finances
+            </button>
+            <button class="filter-btn" data-category="lbcs-ddtc">
+                <span class="filter-icon">📊</span> LBCs & DDTC
+            </button>
+        </section>
+
+        <!-- Ceremonies Grid -->
+        <section class="ceremonies-grid" id="ceremoniesGrid">
+            <!-- Populated by JavaScript -->
+        </section>
+
+        <!-- Ceremony Detail Panel (Modal) -->
+        <div class="detail-overlay" id="detailOverlay">
+            <div class="detail-panel" id="detailPanel">
+                <button class="detail-close" id="detailClose">&times;</button>
+                <div class="detail-header">
+                    <span class="detail-type-badge" id="detailTypeBadge"></span>
+                    <span class="detail-category-badge" id="detailCategoryBadge"></span>
+                </div>
+                <h2 class="detail-title" id="detailTitle"></h2>
+                
+                <div class="detail-sections">
+                    <div class="detail-section">
+                        <h3><span class="section-icon">📌</span> What</h3>
+                        <p id="detailDescription"></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">🎯</span> Outcome</h3>
+                        <p id="detailOutcome"></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">👥</span> Who Attends</h3>
+                        <div id="detailAttendees"></div>
+                    </div>
+
+                    <div class="detail-section" id="responsibilitiesSection">
+                        <h3><span class="section-icon">✅</span> PDM Key Responsibilities</h3>
+                        <ul id="detailResponsibilities"></ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">🗓️</span> When</h3>
+                        <div class="sprint-tags" id="detailSprints"></div>
+                    </div>
+
+                    <div class="detail-section" id="relatedSection">
+                        <h3><span class="section-icon">🔗</span> Related</h3>
+                        <div id="detailRelated"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>UCL Information Services Division — Portfolio Delivery Management</p>
+            <p class="footer-note">Single source of truth for PDM ceremonies and artefacts</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
