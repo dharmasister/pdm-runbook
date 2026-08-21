@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Termly Ceremonies — Day in the Life of a Term</title>
+    <style>
+/* ========== CSS VARIABLES (UCL Branding) ========== */
+:root {
+    --ucl-purple: #500778;
+    --ucl-purple-light: #6B2D8B;
+    --ucl-purple-lighter: #F3E8F9;
+    --ucl-purple-bg: #FAF5FC;
+    --ucl-teal: #0097A9;
+    --ucl-orange: #E87722;
+    --ucl-red: #8C1515;
+    --ucl-green: #2E7D32;
+    --white: #FFFFFF;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-400: #9CA3AF;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --transition: 0.2s ease;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ========== HEADER ========== */
+.site-header {
+    background: var(--ucl-purple);
+    color: var(--white);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.site-subtitle {
+    font-size: 0.875rem;
+    opacity: 0.85;
+    font-weight: 400;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ucl-logo {
+    height: 40px;
+    width: auto;
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.persona-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.persona-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.persona-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.persona-badge {
+    padding: 0.5rem 1.1rem;
+    border-radius: 24px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.persona-badge.active {
+    background: var(--white);
+    color: var(--ucl-purple);
+    border-color: var(--white);
+}
+
+.persona-badge.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* ========== TIMELINE ========== */
+.timeline-section {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2rem 3rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.timeline-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding: 0 2rem;
+}
+
+.timeline-label-start,
+.timeline-label-end {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-container {
+    position: relative;
+    padding: 2rem 2rem;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    right: 2rem;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ucl-purple-lighter), var(--ucl-purple), var(--ucl-purple-lighter));
+    border-radius: 2px;
+    transform: translateY(-50%);
+}
+
+.timeline-nodes {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0.5rem;
+}
+
+.timeline-node:hover .node-dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(80, 7, 120, 0.15);
+}
+
+.timeline-node.active .node-dot {
+    background: var(--ucl-purple);
+    transform: scale(1.3);
+    box-shadow: 0 0 0 6px rgba(80, 7, 120, 0.2);
+}
+
+.node-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 4px solid var(--ucl-purple);
+    transition: var(--transition);
+}
+
+.node-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gray-600);
+    transition: var(--transition);
+}
+
+.timeline-node.active .node-label {
+    color: var(--ucl-purple);
+    font-size: 0.95rem;
+}
+
+.view-all-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.view-all-btn {
+    padding: 0.5rem 1.25rem;
+    background: var(--ucl-purple-lighter);
+    color: var(--ucl-purple);
+    border: 1.5px solid var(--ucl-purple);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.view-all-btn:hover {
+    background: var(--ucl-purple);
+    color: var(--white);
+}
+
+.view-all-btn.active {
+    background: var(--ucl-purple);
+    color: var(--white);
+}
+
+/* ========== SPRINT HEADER ========== */
+.sprint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 0.25rem;
+}
+
+.sprint-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.sprint-count {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    background: var(--gray-100);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+}
+
+/* ========== CATEGORY FILTER ========== */
+.category-filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--ucl-purple);
+    color: var(--ucl-purple);
+}
+
+.filter-btn.active {
+    background: var(--ucl-purple);
+    color: var(--white);
+    border-color: var(--ucl-purple);
+}
+
+.filter-icon {
+    font-size: 0.9rem;
+}
+
+/* ========== MEETINGS GRID ========== */
+.meetings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+.meeting-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.meeting-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+}
+
+.meeting-card[data-category="ti-planning"]::before { background: var(--ucl-purple); }
+.meeting-card[data-category="delivery"]::before { background: var(--ucl-teal); }
+.meeting-card[data-category="finances"]::before { background: var(--ucl-orange); }
+.meeting-card[data-category="lbcs-ddtc"]::before { background: var(--ucl-red); }
+
+.meeting-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: var(--gray-300);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-category {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+}
+
+.card-category[data-category="ti-planning"] {
+    background: rgba(80, 7, 120, 0.08);
+    color: var(--ucl-purple);
+}
+.card-category[data-category="delivery"] {
+    background: rgba(0, 151, 169, 0.08);
+    color: var(--ucl-teal);
+}
+.card-category[data-category="finances"] {
+    background: rgba(232, 119, 34, 0.08);
+    color: var(--ucl-orange);
+}
+.card-category[data-category="lbcs-ddtc"] {
+    background: rgba(140, 21, 21, 0.08);
+    color: var(--ucl-red);
+}
+
+.card-presenter {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    line-height: 1.3;
+}
+
+.card-why {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+}
+
+.card-content-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.25rem;
+}
+
+.card-content-label {
+    font-size: 0.7rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.card-content-pill {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--ucl-purple-lighter);
+    color: var(--ucl-purple);
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.card-footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--gray-100);
+}
+
+.card-who {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray-500);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ========== DETAIL PANEL (MODAL) ========== */
+.detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.detail-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.detail-panel {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 2rem;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.3s ease;
+}
+
+/* Artefact panel removed - now inline */
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.detail-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.detail-close:hover {
+    background: var(--gray-200);
+    color: var(--gray-800);
+}
+
+.detail-header {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.detail-category-badge,
+.detail-sprint-badge {
+    padding: 0.3rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.detail-sprint-badge {
+    background: var(--gray-100);
+    color: var(--gray-600);
+}
+
+/* Artefact badge removed - now inline */
+
+.detail-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    padding-right: 2rem;
+}
+
+.detail-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detail-section h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.section-icon {
+    font-size: 1rem;
+}
+
+.detail-section p {
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+}
+
+.outcome-box {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-50);
+    border-left: 3px solid var(--ucl-purple);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.outcome-box strong {
+    font-size: 0.8rem;
+    color: var(--ucl-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.outcome-box p {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+}
+
+/* Content links (artefacts) */
+.content-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.content-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    background: var(--ucl-purple-lighter);
+    border: 1.5px solid rgba(80, 7, 120, 0.2);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    color: var(--ucl-purple);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.content-link:hover {
+    background: var(--ucl-purple);
+    color: var(--white);
+    border-color: var(--ucl-purple);
+}
+
+.content-link.expanded {
+    background: var(--ucl-purple);
+    color: var(--white);
+    border-color: var(--ucl-purple);
+}
+
+/* Inline artefact preview */
+.content-preview {
+    margin-top: 0.75rem;
+}
+
+.artefact-inline-preview {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.preview-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.5rem;
+}
+
+.preview-description {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.preview-screenshots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.preview-screenshot-item {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.preview-screenshot-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--ucl-purple);
+}
+
+.preview-screenshot-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-hint {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--gray-400);
+    padding: 0.4rem;
+    margin: 0;
+}
+
+/* Attendees */
+.attendees-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.attendee-tag {
+    padding: 0.3rem 0.7rem;
+    background: var(--gray-100);
+    border-radius: 16px;
+    font-size: 0.8rem;
+    color: var(--gray-700);
+}
+
+/* Back to meeting button - REMOVED (artefacts now inline) */
+
+/* Screenshot gallery in artefact panel - REMOVED (now inline) */
+
+/* Lightbox (full-screen image zoom) */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: pointer;
+}
+
+.lightbox-overlay.visible {
+    display: flex;
+}
+
+.lightbox-image {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    animation: lightboxZoom 0.3s ease;
+}
+
+@keyframes lightboxZoom {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 2001;
+}
+
+.lightbox-close:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+    background: var(--gray-800);
+    color: var(--gray-300);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content p {
+    font-size: 0.85rem;
+}
+
+.footer-note {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .timeline-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .timeline-container {
+        padding: 2rem 0.5rem;
+    }
+
+    .timeline-labels {
+        padding: 0 0.5rem;
+    }
+
+    .node-label {
+        font-size: 0.7rem;
+    }
+
+    .node-dot {
+        width: 22px;
+        height: 22px;
+        border-width: 3px;
+    }
+
+    .meetings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-filter {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+    }
+
+    .detail-overlay {
+        padding: 1rem;
+    }
+
+    .detail-panel {
+        padding: 1.5rem;
+        max-height: 90vh;
+    }
+
+    .detail-title {
+        font-size: 1.25rem;
+    }
+
+    .sprint-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .view-all-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-nodes {
+        gap: 0;
+    }
+
+    .timeline-node {
+        padding: 0.25rem;
+    }
+}
+
+</style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-brand">
+                    <img src="Images/ucl-logo-white.png" alt="UCL" class="ucl-logo" />
+                    <div class="header-titles">
+                        <h1 class="site-title">Key Termly Ceremonies</h1>
+                        <p class="site-subtitle">Day in the Life of a Term</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="persona-selector">
+                    <span class="persona-label">Viewing as:</span>
+                    <div class="persona-badges">
+                        <button class="persona-badge active" data-persona="pdm">PDM</button>
+                        <button class="persona-badge disabled" data-persona="adm" title="Coming Soon">ADM</button>
+                        <button class="persona-badge disabled" data-persona="po" title="Coming Soon">PO</button>
+                        <button class="persona-badge disabled" data-persona="pl" title="Coming Soon">PL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="timeline-labels">
+                <span class="timeline-label-start">Start of Term</span>
+                <span class="timeline-label-end">End of Term</span>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-nodes">
+                    <button class="timeline-node active" data-sprint="sprint-1">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 1</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-2">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 2</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-3">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 3</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-4">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 4</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-5">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 5</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-6-ia">
+                        <span class="node-dot"></span>
+                        <span class="node-label">I&A</span>
+                    </button>
+                </div>
+            </div>
+            <div class="view-all-container">
+                <button class="view-all-btn" id="viewAllBtn">View All Sprints</button>
+            </div>
+        </section>
+
+        <!-- Sprint Header -->
+        <section class="sprint-header" id="sprintHeader">
+            <h2 class="sprint-title" id="sprintTitle">Sprint 1</h2>
+            <div class="sprint-meta">
+                <span class="sprint-count" id="sprintCount"></span>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="ti-planning">
+                <span class="filter-icon">📋</span> TI Planning
+            </button>
+            <button class="filter-btn" data-category="delivery">
+                <span class="filter-icon">🚀</span> Delivery
+            </button>
+            <button class="filter-btn" data-category="finances">
+                <span class="filter-icon">💰</span> Finances
+            </button>
+            <button class="filter-btn" data-category="lbcs-ddtc">
+                <span class="filter-icon">📊</span> LBCs & DDTC
+            </button>
+        </section>
+
+        <!-- Meetings Grid -->
+        <section class="meetings-grid" id="meetingsGrid">
+            <!-- Populated by JavaScript -->
+        </section>
+
+        <!-- Meeting Detail Panel (Modal) -->
+        <div class="detail-overlay" id="detailOverlay">
+            <div class="detail-panel" id="detailPanel">
+                <button class="detail-close" id="detailClose">&times;</button>
+                <div class="detail-header">
+                    <span class="detail-category-badge" id="detailCategoryBadge"></span>
+                    <span class="detail-sprint-badge" id="detailSprintBadge"></span>
+                </div>
+                <h2 class="detail-title" id="detailTitle"></h2>
+                
+                <div class="detail-sections">
+                    <div class="detail-section">
+                        <h3><span class="section-icon">🎤</span> Presenter</h3>
+                        <p id="detailPresenter"></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">🎯</span> Why</h3>
+                        <p id="detailWhy"></p>
+                        <div class="outcome-box" id="detailOutcomeBox">
+                            <strong>Outcome:</strong>
+                            <p id="detailOutcome"></p>
+                        </div>
+                    </div>
+
+                    <div class="detail-section" id="contentSection">
+                        <h3><span class="section-icon">📎</span> Content</h3>
+                        <div class="content-links" id="detailContent"></div>
+                        <div class="content-preview" id="contentPreview"></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">👥</span> Who</h3>
+                        <div id="detailAttendees"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Lightbox (full-screen zoom) -->
+        <div class="lightbox-overlay" id="lightboxOverlay">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img class="lightbox-image" id="lightboxImage" alt="Artefact example enlarged" />
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>UCL Information Services Division — Portfolio Delivery Management</p>
+            <p class="footer-note">Single source of truth for key termly ceremonies and artefacts</p>
+        </div>
+    </footer>
+
+    <script>
+// Key Termly Ceremonies - Meeting Data
+const CEREMONIES_DATA = {
+  personas: [
+    { id: "pdm", name: "Portfolio Delivery Manager", shortName: "PDM", active: true },
+    { id: "adm", name: "Agile Delivery Manager", shortName: "ADM", active: false },
+    { id: "po", name: "Product Owner", shortName: "PO", active: false },
+    { id: "pl", name: "Portfolio Lead", shortName: "PL", active: false }
+  ],
+
+  sprints: [
+    { id: "sprint-1", name: "Sprint 1", shortName: "Sprint 1", position: 1 },
+    { id: "sprint-2", name: "Sprint 2", shortName: "Sprint 2", position: 2 },
+    { id: "sprint-3", name: "Sprint 3", shortName: "Sprint 3", position: 3 },
+    { id: "sprint-4", name: "Sprint 4", shortName: "Sprint 4", position: 4 },
+    { id: "sprint-5", name: "Sprint 5", shortName: "Sprint 5", position: 5 },
+    { id: "sprint-6-ia", name: "Sprint 6 (I&A)", shortName: "I&A", position: 6 }
+  ],
+
+  categories: [
+    { id: "ti-planning", name: "TI Planning", color: "#500778", icon: "📋" },
+    { id: "delivery", name: "Delivery", color: "#0097A9", icon: "🚀" },
+    { id: "finances", name: "Finances", color: "#E87722", icon: "💰" },
+    { id: "lbcs-ddtc", name: "LBCs & DDTC", color: "#8C1515", icon: "📊" }
+  ],
+
+  // Artefacts that meetings link to
+  artefacts: [
+    {
+      id: "cio-lt-playback-deck",
+      name: "CIO LT Playback Deck",
+      description: "The PDM gathers all committed outcomes, highlights the key risks and resource challenges in the CIO LT Playback Deck.",
+      outcome: "The CIO LT Playback Deck is updated.",
+      preparedBy: "Change Portfolio Manager",
+      screenshots: ["Images/cio-lt-playback-deck.png"]
+    },
+    {
+      id: "ti-planning-risks-dependencies",
+      name: "TI Planning Risks & Dependencies",
+      description: "A cross-portfolio view of key risks, dependencies, and planned initiatives identified during TI Planning. Enables portfolios to share a high-level view of work and ensures interdependencies are incorporated into planning activities.",
+      outcome: "All risks and cross-portfolio dependencies are outlined.",
+      preparedBy: "Portfolio Delivery Manager",
+      screenshots: ["Images/ti-planning-risks-dependencies.png"]
+    },
+    {
+      id: "ti-planning-management-review-deck",
+      name: "TI Planning Management Review Deck",
+      description: "Slides capturing confirmed planned outcomes, remaining delivery risks, dependencies and delivery confidence ahead of the TI start.",
+      outcome: "Confirmed alignment across portfolios, agreed key priorities and dependency resolutions, and actions to address outstanding risks.",
+      preparedBy: "PDMs",
+      screenshots: ["Images/ti-planning-management-review-deck.png"]
+    },
+    {
+      id: "portfolio-vision-slide-deck",
+      name: "Portfolio Vision Slide Deck",
+      description: "A set of prepared slides capturing strategic inputs, priorities, and insights that the portfolio updates ahead of the session to support defining the future vision.",
+      outcome: "Portfolio Vision slides are updated with aligned strategic direction, key priorities, and a clearly articulated future state for the portfolio.",
+      preparedBy: "Change Portfolio Chair, Product Management, Platform and Product team representatives",
+      screenshots: ["Images/portfolio-vision-slide-deck-1.png", "Images/portfolio-vision-slide-deck-2.png"]
+    },
+    {
+      id: "extended-delivery-report",
+      name: "Extended Delivery Report",
+      description: "Updated Extended Delivery slides capturing progress against termly outcomes, key risks, dependencies, and required interventions.",
+      outcome: "Clear, shared visibility of progress against termly outcomes, with risks, dependencies, and interventions identified and aligned.",
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["Images/extended-delivery-report-1.png", "Images/extended-delivery-report-2.png"]
+    },
+    {
+      id: "itppd-staff-log",
+      name: "ITPPD Staff Log",
+      description: "A record of resource assignments, vacancies, subcontractor contract dates, and budgets used to review workforce capacity.",
+      outcome: "Clear view of resource allocation and capacity across portfolios.",
+      preparedBy: "Staff Operations Manager",
+      screenshots: []
+    },
+    {
+      id: "finance-plan",
+      name: "Finance Plan",
+      description: "A monthly update of portfolio financial plans with actual spend provided by the Lean Portfolio Group, reviewed by the PDM to validate forecasts and ensure alignment within allocated budgets.",
+      outcome: "Accurate and aligned financial plans, with forecasts validated and managed within budget.",
+      preparedBy: "Change Portfolio Manager, Lean Portfolio Group Rep",
+      screenshots: []
+    },
+    {
+      id: "portfolio-status-update",
+      name: "Portfolio Status Update",
+      description: "Updated portfolio performance slides with delivery status, financials, risks, and progress information.",
+      outcome: "Clear visibility of portfolio health and progress for governance review.",
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["Images/portfolio-status-update.png"]
+    },
+    {
+      id: "portfolio-delivery-updates",
+      name: "Portfolio Delivery Updates",
+      description: "Slides capturing delivery progress, achievements, and any blockers or changes since the last reporting period.",
+      outcome: "Stakeholders have a clear picture of delivery performance across portfolios.",
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["Images/portfolio-delivery-updates.png"]
+    },
+    {
+      id: "portfolio-roadmap",
+      name: "Portfolio Roadmap",
+      description: "A visual representation of planned delivery across Now/Next/Future horizons, categorised by Strategic Change, Enhance, and Maintain.",
+      outcome: "Clear visibility of planned work and strategic direction for the portfolio.",
+      preparedBy: "Product Owners, Portfolio Delivery Manager",
+      screenshots: ["Images/portfolio-roadmap.png"]
+    },
+    {
+      id: "lean-business-case",
+      name: "Lean Business Case",
+      description: "A structured document for each investment request, capturing objectives, benefits, costs, risks, and delivery approach for DDTC approval.",
+      outcome: "Approved investment decisions with clear alignment on priorities and risks.",
+      preparedBy: "Product and Platform Owners",
+      screenshots: ["Images/lean-business-case.png"]
+    },
+    {
+      id: "committed-outcomes",
+      name: "Committed Outcomes",
+      description: "The agreed set of outcomes that each portfolio and product team has committed to deliver during the term.",
+      outcome: "Clear visibility of what each team has committed to delivering.",
+      preparedBy: "Product Teams, ADMs",
+      screenshots: ["Images/committed-outcomes.png"]
+    },
+    {
+      id: "risk-issues-dependencies",
+      name: "Risks, Issues & Dependencies",
+      description: "A log of identified risks, active issues, and cross-team or cross-portfolio dependencies that require coordination.",
+      outcome: "All risks and dependencies are tracked, visible, and actively managed.",
+      preparedBy: "PDM, ADMs",
+      screenshots: ["Images/risk-issues-dependencies.png"]
+    },
+    {
+      id: "jira-backlog",
+      name: "JIRA Backlog",
+      description: "The prioritised product backlog in JIRA containing user stories, bugs, and tasks ready for sprint planning.",
+      outcome: "A refined and prioritised backlog ready for team commitment.",
+      preparedBy: "Product Owner",
+      screenshots: ["Images/jira-backlog.png"]
+    },
+    {
+      id: "sprint-updates",
+      name: "Sprint Updates",
+      description: "Updates on sprint progress, completed work, and any changes to scope or commitments during the sprint.",
+      outcome: "Transparency on sprint progress and any impediments.",
+      preparedBy: "ADM, Product Team",
+      screenshots: ["Images/sprint-updates.png"]
+    },
+    {
+      id: "inspect-adapt-slides",
+      name: "Inspect & Adapt Slides",
+      description: "A consolidated summary of progress, metrics, insights, and key improvement areas captured from the term review.",
+      outcome: "Portfolio Inspect & Adapt slides are updated with portfolio progress against term outcomes, including metrics and key insights.",
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: []
+    },
+    {
+      id: "vision-of-visions-slides",
+      name: "Vision of Visions Slides",
+      description: "Updated Vision of Vision slides and a dependency tracking spreadsheet capturing cross-portfolio dependencies, priorities, and alignment inputs.",
+      outcome: "Clear cross-portfolio visibility, aligned priorities, and readiness for coordinated TI planning.",
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: []
+    }
+  ],
+
+  // Meetings only
+  meetings: [
+    {
+      id: "cio-lt-commitments",
+      name: "CIO LT – TI Commitments",
+      category: "ti-planning",
+      activityGroup: "CIO",
+      sprints: ["sprint-1"],
+      presenter: "PDMs",
+      why: "Playback key planned Outcomes, key risks, and highlight practice and resource challenges.",
+      outcome: "Ensures CIO LT is aligned on planned term outcomes, key risks, dependencies, resource constraints and financial implications, and provides a forum for leaders to resolve issues, remove barriers and support successful delivery.",
+      content: ["cio-lt-playback-deck"],
+      whoAttends: "CIO LT, PDMs and LPG"
+    },
+    {
+      id: "ti-planning-meeting",
+      name: "TI Planning",
+      category: "ti-planning",
+      activityGroup: "TIP",
+      sprints: ["sprint-6-ia"],
+      presenter: "Various",
+      why: "A quarterly, collaborative event that serves as the heartbeat of agile working at UCL, aligning all the teams to a shared mission and vision. This event includes stakeholders from outside ISD, ISD Leadership and all Product/Platform Team members and occurs within the Innovation and Planning (IP) Iteration.",
+      outcome: "Aligned iteration plans and objectives across all teams, with clear priorities, dependencies identified, and commitment to delivering the Termly Increment goals.",
+      content: [],
+      whoAttends: "Product and Platform Teams, Product and Platform Owners, Change Portfolio Leadership Teams, Lean Portfolio Group, Centre of Excellence, ISD Leadership, Relevant key stakeholders external to ISD"
+    },
+    {
+      id: "day-1-management-review",
+      name: "Day 1 Management Review",
+      category: "ti-planning",
+      activityGroup: "TIP",
+      sprints: ["sprint-6-ia"],
+      presenter: "PDMs",
+      why: "To review alignment across all portfolios, assess open and emerging risks & dependencies.",
+      outcome: "Outstanding risks and dependencies are understood, decisions are made where required, and actions are agreed to minimise delivery impacts.",
+      content: ["ti-planning-risks-dependencies"],
+      whoAttends: "CIO, Director of Delivery, Director of Strategic Change, Portfolio Leadership Groups (PDMs, Portfolio Owners, Portfolio Leads, Portfolio BAs, Portfolio Architects) and Capability Leads"
+    },
+    {
+      id: "day-2-management-review",
+      name: "Day 2 Management Review",
+      category: "ti-planning",
+      activityGroup: "TIP",
+      sprints: ["sprint-6-ia"],
+      presenter: "PDMs",
+      why: "Play back confirmed planned Outcomes for the term including any remaining delivery risks, dependencies and delivery confidence ahead of the start of the TI.",
+      outcome: "Confirmed alignment across the portfolios, communicate agreed key priorities and dependency resolutions, and identified actions required to address outstanding risks.",
+      content: ["ti-planning-management-review-deck"],
+      whoAttends: "CIO, Director of Delivery, Director of Strategic Change, Portfolio Leadership Groups (PDMs, Portfolio Owners, Portfolio Leads, Portfolio BAs, Portfolio Architects) and Capability Leads"
+    },
+    {
+      id: "ti-playback",
+      name: "TI Playback",
+      category: "ti-planning",
+      activityGroup: "TIP",
+      sprints: ["sprint-6-ia"],
+      presenter: "Various",
+      why: "To demonstrate what has been delivered during the Planning Increment and review any outstanding challenge.",
+      outcome: "Stakeholders have confidence in delivery outcomes and understand any remaining risks, carry-over work and implications for the next Termly Increment.",
+      content: ["portfolio-vision-slide-deck"],
+      whoAttends: "Portfolio Owner, Portfolio Lead, PDM, Product & Platform Owners, Relevant Platform and Product team representatives, LPG Rep for Change Portfolio"
+    },
+    {
+      id: "portfolio-vision",
+      name: "Portfolio Vision",
+      category: "ti-planning",
+      activityGroup: "PV",
+      sprints: ["sprint-6-ia"],
+      presenter: "Various",
+      why: "A session to define a clear, shared future vision for the portfolio that aligns strategy, guides investment decisions, and motivates teams.",
+      outcome: "A well-defined and aligned portfolio vision that provides strategic direction and clarity for teams and stakeholders.",
+      content: ["portfolio-vision-slide-deck"],
+      whoAttends: "Portfolio Owner, Portfolio Lead, PDM, Product & Platform Owners, Relevant Platform and Product team representatives, LPG Rep for Change Portfolio"
+    },
+    {
+      id: "extended-delivery-sync",
+      name: "Extended Delivery Sync",
+      category: "delivery",
+      activityGroup: "EDS",
+      sprints: ["sprint-1", "sprint-2", "sprint-3", "sprint-4", "sprint-5", "sprint-6-ia"],
+      presenter: "PDMs",
+      why: "Sprintly playback of progress against agreed termly Outcomes to Director of Delivery.",
+      outcome: "The Director of Delivery and PDMs share visibility of progress against termly outcomes, addressing risks, dependencies, and any required interventions.",
+      content: ["extended-delivery-report"],
+      whoAttends: "Director of Delivery, PDMs, Head of Portfolio Operations"
+    },
+    {
+      id: "delivery-health-portfolio-review",
+      name: "Delivery Health & Portfolio Review",
+      category: "delivery",
+      activityGroup: "DHPR",
+      sprints: ["sprint-2", "sprint-4"],
+      presenter: "PDMs",
+      why: "Review updates and progress against committed Outcomes, highlight outstanding or emerging risks and issues and review Financial position for each Change Portfolio.",
+      outcome: "Provides clear visibility and opportunity for scrutiny of delivery confidence, dependencies, risks, and financial position across portfolios, enabling escalation of issues and risks, and informed decisions and resolutions.",
+      content: ["extended-delivery-report"],
+      whoAttends: "Director of Delivery, PDMs, Head of Portfolio Operations"
+    },
+    {
+      id: "resource-meeting",
+      name: "Resource Meeting ITPPD (Delivery and Dev & Test)",
+      category: "delivery",
+      activityGroup: "RM",
+      sprints: ["sprint-2", "sprint-4"],
+      presenter: "Various",
+      why: "A monthly session to review resource allocation, vacancies, contracts, and budgets, while identifying workforce risks and cross-portfolio development opportunities.",
+      outcome: "A clear, aligned view of resource capacity and actions to optimise utilisation and support staff development.",
+      content: ["itppd-staff-log"],
+      whoAttends: "ITPPD Director, Staff Operations Manager, Head of LPG, Portfolio Delivery Managers, Dev & Test Representatives"
+    },
+    {
+      id: "jamboree",
+      name: "Jamboree",
+      category: "delivery",
+      activityGroup: "JAM",
+      sprints: ["sprint-5"],
+      presenter: "Various",
+      why: "A quarterly session to share insights, strengthen connections, and improve collaboration across teams.",
+      outcome: "Shared understanding, stronger cross-team collaboration, and key insights that support effective delivery.",
+      content: [],
+      whoAttends: "ITTPD Director, Change Portfolio Delivery Manager, Agile Delivery Manager, IT Delivery Support Officer, Lean Portfolio Group"
+    },
+    {
+      id: "showcase-demo",
+      name: "ISD & ARC Showcase Demo",
+      category: "delivery",
+      activityGroup: "SD",
+      sprints: ["sprint-3", "sprint-4"],
+      presenter: "Various",
+      why: "To showcase progress and demonstrate delivered value across the digital change portfolios, enabling visibility, engagement, and shared learning.",
+      outcome: "Stakeholders gain visibility of recent delivery achievements, provide feedback.",
+      content: [],
+      whoAttends: "ISD, and various institutional stakeholders"
+    },
+    {
+      id: "monthly-finance-review",
+      name: "Monthly Finance LT Review Meeting",
+      category: "finances",
+      activityGroup: "MFKT",
+      sprints: ["sprint-1", "sprint-3", "sprint-5"],
+      presenter: "PDMs",
+      why: "A monthly meeting to review portfolio financial performance, including spend, forecasts, delivery progress, and financial risks against approved budgets.",
+      outcome: "Clear alignment on portfolio financial position, with risks identified and actions agreed to maintain budget and delivery performance.",
+      content: ["finance-plan"],
+      whoAttends: "Change Portfolio Owner, Change Portfolio Manager, Change Portfolio Lead"
+    },
+    {
+      id: "ddtc-meeting",
+      name: "Digital Delivery and Transformation Committee (DDTC)",
+      category: "lbcs-ddtc",
+      activityGroup: "DDTC",
+      sprints: ["sprint-6-ia"],
+      presenter: "Various",
+      why: "To maintain a single portfolio of investment in digital delivery and transformation and ensure continued alignment with the University's overarching strategy and digital strategy.",
+      outcome: "Approved investment decisions and Lean Business Cases sign-off, with clear alignment on priorities, risks, and progress against portfolio outcomes.",
+      content: ["portfolio-status-update", "portfolio-delivery-updates", "portfolio-roadmap", "lean-business-case"],
+      whoAttends: "CIO, Director of Delivery, Portfolio Owners"
+    },
+    {
+      id: "scrum-of-scrums",
+      name: "Scrum of Scrums",
+      category: "ti-planning",
+      activityGroup: "",
+      sprints: ["sprint-1", "sprint-2", "sprint-3", "sprint-4", "sprint-5", "sprint-6-ia"],
+      presenter: "PDMs",
+      why: "To coordinate dependencies, manage cross-team risks and impediments, and ensure alignment across all Product Teams within the portfolio.",
+      outcome: "Cross-team dependencies, risks and blockers are actively managed, enabling coordinated delivery of portfolio outcomes.",
+      content: ["committed-outcomes", "risk-issues-dependencies"],
+      whoAttends: "PDM and ADMs"
+    },
+    {
+      id: "sprint-planning",
+      name: "Sprint Planning",
+      category: "ti-planning",
+      activityGroup: "",
+      sprints: ["sprint-1", "sprint-2", "sprint-3", "sprint-4", "sprint-5", "sprint-6-ia"],
+      presenter: "Product Owner (priorities) and ADM (facilitation)",
+      why: "To agree the work that will be delivered in the sprint and establish a realistic plan based on priorities, dependencies and team capacity.",
+      outcome: "Sprint objectives, scope and delivery commitments are agreed and aligned to product and portfolio priorities.",
+      content: ["jira-backlog", "sprint-updates"],
+      whoAttends: "Product Owner, Product Team, ADM"
+    }
+  ]
+};
+
+// Key Termly Ceremonies - Application Logic
+(function() {
+    'use strict';
+
+    // ========== STATE ==========
+    let currentSprint = 'sprint-1';
+    let currentCategory = 'all';
+    let viewAll = false;
+
+    // ========== DOM ELEMENTS ==========
+    const timelineNodes = document.querySelectorAll('.timeline-node');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const meetingsGrid = document.getElementById('meetingsGrid');
+    const sprintTitle = document.getElementById('sprintTitle');
+    const sprintCount = document.getElementById('sprintCount');
+    const detailOverlay = document.getElementById('detailOverlay');
+    const detailClose = document.getElementById('detailClose');
+    const viewAllBtn = document.getElementById('viewAllBtn');
+
+    // ========== HELPERS ==========
+    function getSprintName(sprintId) {
+        const sprint = CEREMONIES_DATA.sprints.find(s => s.id === sprintId);
+        return sprint ? sprint.name : sprintId;
+    }
+
+    function getCategoryInfo(categoryId) {
+        return CEREMONIES_DATA.categories.find(c => c.id === categoryId);
+    }
+
+    function getMeetingById(id) {
+        return CEREMONIES_DATA.meetings.find(m => m.id === id);
+    }
+
+    function getArtefactById(id) {
+        return CEREMONIES_DATA.artefacts.find(a => a.id === id);
+    }
+
+    function getFilteredMeetings() {
+        let meetings = CEREMONIES_DATA.meetings;
+
+        // Filter by sprint
+        if (!viewAll) {
+            meetings = meetings.filter(m => m.sprints.includes(currentSprint));
+        }
+
+        // Filter by category
+        if (currentCategory !== 'all') {
+            meetings = meetings.filter(m => m.category === currentCategory);
+        }
+
+        // Sort alphabetically by name
+        meetings.sort((a, b) => a.name.localeCompare(b.name));
+
+        return meetings;
+    }
+
+    // ========== RENDER FUNCTIONS ==========
+    function renderMeetings() {
+        const meetings = getFilteredMeetings();
+
+        if (meetings.length === 0) {
+            meetingsGrid.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <p class="empty-state-text">No ceremonies found for this selection</p>
+                </div>
+            `;
+            sprintCount.textContent = '0 meetings';
+            return;
+        }
+
+        sprintCount.textContent = `${meetings.length} meeting${meetings.length !== 1 ? 's' : ''}`;
+
+        meetingsGrid.innerHTML = meetings.map(meeting => {
+            const category = getCategoryInfo(meeting.category);
+            
+            // Content/artefact pills
+            const contentPills = meeting.content.map(contentId => {
+                const artefact = getArtefactById(contentId);
+                return artefact ? `<span class="card-content-pill">${artefact.name}</span>` : '';
+            }).join('');
+
+            // Truncate why text for card
+            const whyShort = meeting.why.length > 120 ? meeting.why.substring(0, 120) + '...' : meeting.why;
+
+            return `
+                <div class="meeting-card" data-id="${meeting.id}" data-category="${meeting.category}">
+                    <div class="card-top">
+                        <span class="card-category" data-category="${meeting.category}">${category.icon} ${category.name}</span>
+                        <span class="card-presenter">🎤 ${meeting.presenter}</span>
+                    </div>
+                    <h3 class="card-title">${meeting.name}</h3>
+                    <p class="card-why">${whyShort}</p>
+                    ${meeting.content.length > 0 ? `<div class="card-content-row"><span class="card-content-label">📎 Content:</span> ${contentPills}</div>` : ''}
+                    <div class="card-footer">
+                        <span class="card-who">👥 ${meeting.whoAttends.split(',').slice(0, 2).join(', ').trim()}${meeting.whoAttends.split(',').length > 2 ? '...' : ''}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        // Add click handlers to cards
+        document.querySelectorAll('.meeting-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-id');
+                openMeetingDetail(id);
+            });
+        });
+    }
+
+    function openMeetingDetail(meetingId) {
+        const meeting = getMeetingById(meetingId);
+        if (!meeting) return;
+
+        const category = getCategoryInfo(meeting.category);
+
+        // Category badge
+        const categoryBadge = document.getElementById('detailCategoryBadge');
+        categoryBadge.textContent = `${category.icon} ${category.name}`;
+        categoryBadge.style.background = `${category.color}15`;
+        categoryBadge.style.color = category.color;
+
+        // Sprint badge
+        const sprintBadge = document.getElementById('detailSprintBadge');
+        const sprintNames = meeting.sprints.map(s => getSprintName(s)).join(', ');
+        sprintBadge.textContent = `🗓️ ${sprintNames}`;
+
+        // Title
+        document.getElementById('detailTitle').textContent = meeting.name;
+
+        // Presenter
+        document.getElementById('detailPresenter').textContent = meeting.presenter;
+
+        // Why
+        document.getElementById('detailWhy').textContent = meeting.why;
+
+        // Outcome
+        document.getElementById('detailOutcome').textContent = meeting.outcome;
+
+        // Content (artefacts as clickable links + inline preview)
+        const contentSection = document.getElementById('contentSection');
+        const contentContainer = document.getElementById('detailContent');
+        const contentPreview = document.getElementById('contentPreview');
+        
+        if (meeting.content.length > 0) {
+            contentSection.style.display = 'block';
+            
+            // Render artefact links
+            contentContainer.innerHTML = meeting.content.map(contentId => {
+                const artefact = getArtefactById(contentId);
+                if (!artefact) return '';
+                const hasImages = artefact.screenshots && artefact.screenshots.length > 0;
+                return `<a class="content-link ${hasImages ? 'has-images' : ''}" data-artefact-id="${artefact.id}">📄 ${artefact.name} ${hasImages ? '🖼️' : ''}</a>`;
+            }).join('');
+
+            // Clear preview initially
+            contentPreview.innerHTML = '';
+
+            // Add click handlers to content links
+            contentContainer.querySelectorAll('.content-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const artefactId = link.getAttribute('data-artefact-id');
+                    toggleArtefactPreview(artefactId, link);
+                });
+            });
+        } else {
+            contentSection.style.display = 'none';
+        }
+
+        // Who attends
+        const attendeesContainer = document.getElementById('detailAttendees');
+        const attendees = meeting.whoAttends.split(',').map(a => a.trim()).filter(a => a);
+        attendeesContainer.innerHTML = `
+            <div class="attendees-list">
+                ${attendees.map(a => `<span class="attendee-tag">${a}</span>`).join('')}
+            </div>
+        `;
+
+        // Show overlay
+        detailOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function toggleArtefactPreview(artefactId, clickedLink) {
+        const artefact = getArtefactById(artefactId);
+        if (!artefact) return;
+
+        const contentPreview = document.getElementById('contentPreview');
+        
+        // Toggle: if already showing this artefact, hide it
+        if (contentPreview.getAttribute('data-showing') === artefactId) {
+            contentPreview.innerHTML = '';
+            contentPreview.setAttribute('data-showing', '');
+            clickedLink.classList.remove('expanded');
+            return;
+        }
+
+        // Mark all links as not expanded, then expand this one
+        document.querySelectorAll('.content-link').forEach(l => l.classList.remove('expanded'));
+        clickedLink.classList.add('expanded');
+        contentPreview.setAttribute('data-showing', artefactId);
+
+        // Build preview content
+        let previewHTML = `<div class="artefact-inline-preview">`;
+        previewHTML += `<h4 class="preview-title">${artefact.name}</h4>`;
+        previewHTML += `<p class="preview-description">${artefact.description}</p>`;
+        
+        // Screenshots
+        if (artefact.screenshots && artefact.screenshots.length > 0) {
+            previewHTML += `<div class="preview-screenshots">`;
+            artefact.screenshots.forEach((src, index) => {
+                previewHTML += `<div class="preview-screenshot-item" data-src="${src}">
+                    <img src="${src}" alt="${artefact.name} - example ${index + 1}" class="preview-screenshot-img" />
+                </div>`;
+            });
+            previewHTML += `<p class="screenshot-hint">Click image to enlarge</p>`;
+            previewHTML += `</div>`;
+        }
+
+        previewHTML += `</div>`;
+        contentPreview.innerHTML = previewHTML;
+
+        // Add lightbox click handlers to screenshots
+        contentPreview.querySelectorAll('.preview-screenshot-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                openLightbox(src);
+            });
+        });
+
+        // Scroll preview into view
+        contentPreview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function openLightbox(imageSrc) {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightboxImage.src = imageSrc;
+        lightboxOverlay.classList.add('visible');
+    }
+
+    function closeLightbox() {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        lightboxOverlay.classList.remove('visible');
+    }
+
+    function closeMeetingDetail() {
+        detailOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+    }
+
+    function updateTimelineActive() {
+        timelineNodes.forEach(node => {
+            const sprint = node.getAttribute('data-sprint');
+            if (viewAll) {
+                node.classList.remove('active');
+            } else {
+                node.classList.toggle('active', sprint === currentSprint);
+            }
+        });
+    }
+
+    function updateSprintTitle() {
+        if (viewAll) {
+            sprintTitle.textContent = 'All Sprints';
+        } else {
+            sprintTitle.textContent = getSprintName(currentSprint);
+        }
+    }
+
+    function updateFilterActive() {
+        filterBtns.forEach(btn => {
+            const cat = btn.getAttribute('data-category');
+            btn.classList.toggle('active', cat === currentCategory);
+        });
+    }
+
+    // ========== EVENT LISTENERS ==========
+
+    // Timeline node clicks
+    timelineNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            currentSprint = node.getAttribute('data-sprint');
+            viewAll = false;
+            viewAllBtn.classList.remove('active');
+            updateTimelineActive();
+            updateSprintTitle();
+            renderMeetings();
+        });
+    });
+
+    // View All button
+    viewAllBtn.addEventListener('click', () => {
+        viewAll = !viewAll;
+        viewAllBtn.classList.toggle('active', viewAll);
+        updateTimelineActive();
+        updateSprintTitle();
+        renderMeetings();
+    });
+
+    // Category filter clicks
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentCategory = btn.getAttribute('data-category');
+            updateFilterActive();
+            renderMeetings();
+        });
+    });
+
+    // Close meeting detail panel
+    detailClose.addEventListener('click', closeMeetingDetail);
+    detailOverlay.addEventListener('click', (e) => {
+        if (e.target === detailOverlay) {
+            closeMeetingDetail();
+        }
+    });
+
+    // Lightbox close
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxOverlay').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('lightboxOverlay') || e.target === document.getElementById('lightboxImage')) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard escape to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const lightboxOverlay = document.getElementById('lightboxOverlay');
+            if (lightboxOverlay.classList.contains('visible')) {
+                closeLightbox();
+            } else if (detailOverlay.classList.contains('visible')) {
+                closeMeetingDetail();
+            }
+        }
+    });
+
+    // ========== INIT ==========
+    function init() {
+        updateTimelineActive();
+        updateSprintTitle();
+        updateFilterActive();
+        renderMeetings();
+    }
+
+    init();
+})();
+
+</script>
+</body>
+</html>

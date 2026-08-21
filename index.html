@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Termly Ceremonies — Day in the Life of a Term</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-brand">
+                    <img src="Images/ucl-logo-white.png" alt="UCL" class="ucl-logo" />
+                    <div class="header-titles">
+                        <h1 class="site-title">Key Termly Ceremonies</h1>
+                        <p class="site-subtitle">Day in the Life of a Term</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="persona-selector">
+                    <span class="persona-label">Viewing as:</span>
+                    <div class="persona-badges">
+                        <button class="persona-badge active" data-persona="pdm">PDM</button>
+                        <button class="persona-badge disabled" data-persona="adm" title="Coming Soon">ADM</button>
+                        <button class="persona-badge disabled" data-persona="po" title="Coming Soon">PO</button>
+                        <button class="persona-badge disabled" data-persona="pl" title="Coming Soon">PL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="timeline-labels">
+                <span class="timeline-label-start">Start of Term</span>
+                <span class="timeline-label-end">End of Term</span>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-nodes">
+                    <button class="timeline-node active" data-sprint="sprint-1">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 1</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-2">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 2</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-3">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 3</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-4">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 4</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-5">
+                        <span class="node-dot"></span>
+                        <span class="node-label">Sprint 5</span>
+                    </button>
+                    <button class="timeline-node" data-sprint="sprint-6-ia">
+                        <span class="node-dot"></span>
+                        <span class="node-label">I&A</span>
+                    </button>
+                </div>
+            </div>
+            <div class="view-all-container">
+                <button class="view-all-btn" id="viewAllBtn">View All Sprints</button>
+            </div>
+        </section>
+
+        <!-- Sprint Header -->
+        <section class="sprint-header" id="sprintHeader">
+            <h2 class="sprint-title" id="sprintTitle">Sprint 1</h2>
+            <div class="sprint-meta">
+                <span class="sprint-count" id="sprintCount"></span>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="ti-planning">
+                <span class="filter-icon">📋</span> TI Planning
+            </button>
+            <button class="filter-btn" data-category="delivery">
+                <span class="filter-icon">🚀</span> Delivery
+            </button>
+            <button class="filter-btn" data-category="finances">
+                <span class="filter-icon">💰</span> Finances
+            </button>
+            <button class="filter-btn" data-category="lbcs-ddtc">
+                <span class="filter-icon">📊</span> LBCs & DDTC
+            </button>
+        </section>
+
+        <!-- Meetings Grid -->
+        <section class="meetings-grid" id="meetingsGrid">
+            <!-- Populated by JavaScript -->
+        </section>
+
+        <!-- Meeting Detail Panel (Modal) -->
+        <div class="detail-overlay" id="detailOverlay">
+            <div class="detail-panel" id="detailPanel">
+                <button class="detail-close" id="detailClose">&times;</button>
+                <div class="detail-header">
+                    <span class="detail-category-badge" id="detailCategoryBadge"></span>
+                    <span class="detail-sprint-badge" id="detailSprintBadge"></span>
+                </div>
+                <h2 class="detail-title" id="detailTitle"></h2>
+                
+                <div class="detail-sections">
+                    <div class="detail-section">
+                        <h3><span class="section-icon">🎤</span> Presenter</h3>
+                        <p id="detailPresenter"></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">🎯</span> Why</h3>
+                        <p id="detailWhy"></p>
+                        <div class="outcome-box" id="detailOutcomeBox">
+                            <strong>Outcome:</strong>
+                            <p id="detailOutcome"></p>
+                        </div>
+                    </div>
+
+                    <div class="detail-section" id="contentSection">
+                        <h3><span class="section-icon">📎</span> Content</h3>
+                        <div class="content-links" id="detailContent"></div>
+                        <div class="content-preview" id="contentPreview"></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon">👥</span> Who</h3>
+                        <div id="detailAttendees"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Lightbox (full-screen zoom) -->
+        <div class="lightbox-overlay" id="lightboxOverlay">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img class="lightbox-image" id="lightboxImage" alt="Artefact example enlarged" />
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>UCL Information Services Division — Portfolio Delivery Management</p>
+            <p class="footer-note">Single source of truth for key termly ceremonies and artefacts</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
