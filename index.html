@@ -11,8 +11,13 @@
     <header class="site-header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="site-title">Key Termly Ceremonies</h1>
-                <p class="site-subtitle">Day in the Life of a Term</p>
+                <div class="header-brand">
+                    <img src="images/ucl-logo-white.png" alt="UCL" class="ucl-logo" />
+                    <div class="header-titles">
+                        <h1 class="site-title">Key Termly Ceremonies</h1>
+                        <p class="site-subtitle">Day in the Life of a Term</p>
+                    </div>
+                </div>
             </div>
             <div class="header-right">
                 <div class="persona-selector">
@@ -128,6 +133,7 @@
                     <div class="detail-section" id="contentSection">
                         <h3><span class="section-icon">📎</span> Content</h3>
                         <div class="content-links" id="detailContent"></div>
+                        <div class="content-preview" id="contentPreview"></div>
                     </div>
 
                     <div class="detail-section">
@@ -135,43 +141,6 @@
                         <div id="detailAttendees"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Artefact Detail Panel (Modal) -->
-        <div class="detail-overlay" id="artefactOverlay">
-            <div class="detail-panel artefact-panel" id="artefactPanel">
-                <button class="detail-close" id="artefactClose">&times;</button>
-                <div class="detail-header">
-                    <span class="artefact-badge">📄 Artefact</span>
-                </div>
-                <h2 class="detail-title" id="artefactTitle"></h2>
-                
-                <div class="detail-sections">
-                    <div class="detail-section" id="artefactScreenshotSection">
-                        <h3><span class="section-icon">🖼️</span> Example</h3>
-                        <div class="screenshot-gallery" id="artefactScreenshotContainer">
-                            <!-- Populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3><span class="section-icon">📌</span> What</h3>
-                        <p id="artefactDescription"></p>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3><span class="section-icon">🎯</span> Outcome</h3>
-                        <p id="artefactOutcome"></p>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3><span class="section-icon">✏️</span> Prepared By</h3>
-                        <p id="artefactPreparedBy"></p>
-                    </div>
-                </div>
-
-                <button class="back-to-meeting-btn" id="backToMeetingBtn">← Back to Meeting</button>
             </div>
         </div>
 

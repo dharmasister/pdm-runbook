@@ -6,7 +6,6 @@
     let currentSprint = 'sprint-1';
     let currentCategory = 'all';
     let viewAll = false;
-    let lastOpenedMeetingId = null;
 
     // ========== DOM ELEMENTS ==========
     const timelineNodes = document.querySelectorAll('.timeline-node');
@@ -16,9 +15,6 @@
     const sprintCount = document.getElementById('sprintCount');
     const detailOverlay = document.getElementById('detailOverlay');
     const detailClose = document.getElementById('detailClose');
-    const artefactOverlay = document.getElementById('artefactOverlay');
-    const artefactClose = document.getElementById('artefactClose');
-    const backToMeetingBtn = document.getElementById('backToMeetingBtn');
     const viewAllBtn = document.getElementById('viewAllBtn');
 
     // ========== HELPERS ==========
@@ -116,7 +112,6 @@
         const meeting = getMeetingById(meetingId);
         if (!meeting) return;
 
-        lastOpenedMeetingId = meetingId;
         const category = getCategoryInfo(meeting.category);
 
         // Category badge
@@ -142,24 +137,31 @@
         // Outcome
         document.getElementById('detailOutcome').textContent = meeting.outcome;
 
-        // Content (artefacts as clickable links)
+        // Content (artefacts as clickable links + inline preview)
         const contentSection = document.getElementById('contentSection');
         const contentContainer = document.getElementById('detailContent');
+        const contentPreview = document.getElementById('contentPreview');
         
         if (meeting.content.length > 0) {
             contentSection.style.display = 'block';
+            
+            // Render artefact links
             contentContainer.innerHTML = meeting.content.map(contentId => {
                 const artefact = getArtefactById(contentId);
                 if (!artefact) return '';
-                return `<a class="content-link" data-artefact-id="${artefact.id}">📄 ${artefact.name}</a>`;
+                const hasImages = artefact.screenshots && artefact.screenshots.length > 0;
+                return `<a class="content-link ${hasImages ? 'has-images' : ''}" data-artefact-id="${artefact.id}">📄 ${artefact.name} ${hasImages ? '🖼️' : ''}</a>`;
             }).join('');
+
+            // Clear preview initially
+            contentPreview.innerHTML = '';
 
             // Add click handlers to content links
             contentContainer.querySelectorAll('.content-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const artefactId = link.getAttribute('data-artefact-id');
-                    openArtefactDetail(artefactId);
+                    toggleArtefactPreview(artefactId, link);
                 });
             });
         } else {
@@ -180,39 +182,55 @@
         document.body.style.overflow = 'hidden';
     }
 
-    function closeMeetingDetail() {
-        detailOverlay.classList.remove('visible');
-        document.body.style.overflow = '';
-    }
-
-    function openArtefactDetail(artefactId) {
+    function toggleArtefactPreview(artefactId, clickedLink) {
         const artefact = getArtefactById(artefactId);
         if (!artefact) return;
 
-        // Fill artefact panel
-        document.getElementById('artefactTitle').textContent = artefact.name;
-        document.getElementById('artefactDescription').textContent = artefact.description;
-        document.getElementById('artefactOutcome').textContent = artefact.outcome;
-        document.getElementById('artefactPreparedBy').textContent = artefact.preparedBy;
-
-        // Screenshot(s)
-        const screenshotSection = document.getElementById('artefactScreenshotSection');
-        const screenshotContainer = document.getElementById('artefactScreenshotContainer');
+        const contentPreview = document.getElementById('contentPreview');
         
-        if (artefact.screenshots && artefact.screenshots.length > 0) {
-            screenshotSection.style.display = 'block';
-            screenshotContainer.innerHTML = artefact.screenshots.map((src, index) => `
-                <div class="screenshot-item">
-                    <img class="screenshot-image" src="${src}" alt="${artefact.name} - example ${index + 1}" onclick="document.getElementById('lightboxImage').src='${src}'; document.getElementById('lightboxOverlay').classList.add('visible');" />
-                </div>
-            `).join('') + '<p class="screenshot-hint">Click image to enlarge</p>';
-        } else {
-            screenshotSection.style.display = 'none';
+        // Toggle: if already showing this artefact, hide it
+        if (contentPreview.getAttribute('data-showing') === artefactId) {
+            contentPreview.innerHTML = '';
+            contentPreview.setAttribute('data-showing', '');
+            clickedLink.classList.remove('expanded');
+            return;
         }
 
-        // Hide meeting overlay, show artefact overlay
-        detailOverlay.classList.remove('visible');
-        artefactOverlay.classList.add('visible');
+        // Mark all links as not expanded, then expand this one
+        document.querySelectorAll('.content-link').forEach(l => l.classList.remove('expanded'));
+        clickedLink.classList.add('expanded');
+        contentPreview.setAttribute('data-showing', artefactId);
+
+        // Build preview content
+        let previewHTML = `<div class="artefact-inline-preview">`;
+        previewHTML += `<h4 class="preview-title">${artefact.name}</h4>`;
+        previewHTML += `<p class="preview-description">${artefact.description}</p>`;
+        
+        // Screenshots
+        if (artefact.screenshots && artefact.screenshots.length > 0) {
+            previewHTML += `<div class="preview-screenshots">`;
+            artefact.screenshots.forEach((src, index) => {
+                previewHTML += `<div class="preview-screenshot-item" data-src="${src}">
+                    <img src="${src}" alt="${artefact.name} - example ${index + 1}" class="preview-screenshot-img" />
+                </div>`;
+            });
+            previewHTML += `<p class="screenshot-hint">Click image to enlarge</p>`;
+            previewHTML += `</div>`;
+        }
+
+        previewHTML += `</div>`;
+        contentPreview.innerHTML = previewHTML;
+
+        // Add lightbox click handlers to screenshots
+        contentPreview.querySelectorAll('.preview-screenshot-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                openLightbox(src);
+            });
+        });
+
+        // Scroll preview into view
+        contentPreview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function openLightbox(imageSrc) {
@@ -227,16 +245,9 @@
         lightboxOverlay.classList.remove('visible');
     }
 
-    function closeArtefactDetail() {
-        artefactOverlay.classList.remove('visible');
+    function closeMeetingDetail() {
+        detailOverlay.classList.remove('visible');
         document.body.style.overflow = '';
-    }
-
-    function backToMeeting() {
-        artefactOverlay.classList.remove('visible');
-        if (lastOpenedMeetingId) {
-            openMeetingDetail(lastOpenedMeetingId);
-        }
     }
 
     function updateTimelineActive() {
@@ -305,17 +316,6 @@
         }
     });
 
-    // Close artefact detail panel
-    artefactClose.addEventListener('click', closeArtefactDetail);
-    artefactOverlay.addEventListener('click', (e) => {
-        if (e.target === artefactOverlay) {
-            closeArtefactDetail();
-        }
-    });
-
-    // Back to meeting button
-    backToMeetingBtn.addEventListener('click', backToMeeting);
-
     // Lightbox close
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
     document.getElementById('lightboxOverlay').addEventListener('click', (e) => {
@@ -330,8 +330,6 @@
             const lightboxOverlay = document.getElementById('lightboxOverlay');
             if (lightboxOverlay.classList.contains('visible')) {
                 closeLightbox();
-            } else if (artefactOverlay.classList.contains('visible')) {
-                closeArtefactDetail();
             } else if (detailOverlay.classList.contains('visible')) {
                 closeMeetingDetail();
             }

@@ -89,6 +89,22 @@ body {
     font-weight: 400;
 }
 
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ucl-logo {
+    height: 40px;
+    width: auto;
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+}
+
 .persona-selector {
     display: flex;
     align-items: center;
@@ -497,10 +513,7 @@ body {
     animation: slideUp 0.3s ease;
 }
 
-.artefact-panel {
-    max-width: 600px;
-    border-top: 4px solid var(--ucl-orange);
-}
+/* Artefact panel removed - now inline */
 
 @keyframes slideUp {
     from {
@@ -556,14 +569,7 @@ body {
     color: var(--gray-600);
 }
 
-.artefact-badge {
-    padding: 0.3rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: #FEF3C7;
-    color: #92400E;
-}
+/* Artefact badge removed - now inline */
 
 .detail-title {
     font-size: 1.5rem;
@@ -650,6 +656,77 @@ body {
     border-color: var(--ucl-purple);
 }
 
+.content-link.expanded {
+    background: var(--ucl-purple);
+    color: var(--white);
+    border-color: var(--ucl-purple);
+}
+
+/* Inline artefact preview */
+.content-preview {
+    margin-top: 0.75rem;
+}
+
+.artefact-inline-preview {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.preview-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.5rem;
+}
+
+.preview-description {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.preview-screenshots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.preview-screenshot-item {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.preview-screenshot-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--ucl-purple);
+}
+
+.preview-screenshot-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-hint {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--gray-400);
+    padding: 0.4rem;
+    margin: 0;
+}
+
 /* Attendees */
 .attendees-list {
     display: flex;
@@ -665,58 +742,9 @@ body {
     color: var(--gray-700);
 }
 
-/* Back to meeting button */
-.back-to-meeting-btn {
-    margin-top: 1.5rem;
-    padding: 0.6rem 1.25rem;
-    background: var(--gray-100);
-    border: 1.5px solid var(--gray-300);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--gray-700);
-    cursor: pointer;
-    transition: var(--transition);
-}
+/* Back to meeting button - REMOVED (artefacts now inline) */
 
-.back-to-meeting-btn:hover {
-    background: var(--gray-200);
-    border-color: var(--gray-400);
-}
-
-/* Screenshot gallery in artefact panel */
-.screenshot-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.screenshot-item {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.screenshot-item:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--ucl-purple);
-}
-
-.screenshot-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.screenshot-hint {
-    text-align: center;
-    font-size: 0.7rem;
-    color: var(--gray-400);
-    padding: 0.4rem;
-    margin: 0;
-}
+/* Screenshot gallery in artefact panel - REMOVED (now inline) */
 
 /* Lightbox (full-screen image zoom) */
 .lightbox-overlay {
@@ -887,8 +915,13 @@ body {
     <header class="site-header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="site-title">Key Termly Ceremonies</h1>
-                <p class="site-subtitle">Day in the Life of a Term</p>
+                <div class="header-brand">
+                    <img src="images/ucl-logo-white.png" alt="UCL" class="ucl-logo" />
+                    <div class="header-titles">
+                        <h1 class="site-title">Key Termly Ceremonies</h1>
+                        <p class="site-subtitle">Day in the Life of a Term</p>
+                    </div>
+                </div>
             </div>
             <div class="header-right">
                 <div class="persona-selector">
@@ -1004,6 +1037,7 @@ body {
                     <div class="detail-section" id="contentSection">
                         <h3><span class="section-icon">📎</span> Content</h3>
                         <div class="content-links" id="detailContent"></div>
+                        <div class="content-preview" id="contentPreview"></div>
                     </div>
 
                     <div class="detail-section">
@@ -1011,43 +1045,6 @@ body {
                         <div id="detailAttendees"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Artefact Detail Panel (Modal) -->
-        <div class="detail-overlay" id="artefactOverlay">
-            <div class="detail-panel artefact-panel" id="artefactPanel">
-                <button class="detail-close" id="artefactClose">&times;</button>
-                <div class="detail-header">
-                    <span class="artefact-badge">📄 Artefact</span>
-                </div>
-                <h2 class="detail-title" id="artefactTitle"></h2>
-                
-                <div class="detail-sections">
-                    <div class="detail-section" id="artefactScreenshotSection">
-                        <h3><span class="section-icon">🖼️</span> Example</h3>
-                        <div class="screenshot-gallery" id="artefactScreenshotContainer">
-                            <!-- Populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3><span class="section-icon">📌</span> What</h3>
-                        <p id="artefactDescription"></p>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3><span class="section-icon">🎯</span> Outcome</h3>
-                        <p id="artefactOutcome"></p>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3><span class="section-icon">✏️</span> Prepared By</h3>
-                        <p id="artefactPreparedBy"></p>
-                    </div>
-                </div>
-
-                <button class="back-to-meeting-btn" id="backToMeetingBtn">← Back to Meeting</button>
             </div>
         </div>
 
@@ -1425,7 +1422,6 @@ const CEREMONIES_DATA = {
     let currentSprint = 'sprint-1';
     let currentCategory = 'all';
     let viewAll = false;
-    let lastOpenedMeetingId = null;
 
     // ========== DOM ELEMENTS ==========
     const timelineNodes = document.querySelectorAll('.timeline-node');
@@ -1435,9 +1431,6 @@ const CEREMONIES_DATA = {
     const sprintCount = document.getElementById('sprintCount');
     const detailOverlay = document.getElementById('detailOverlay');
     const detailClose = document.getElementById('detailClose');
-    const artefactOverlay = document.getElementById('artefactOverlay');
-    const artefactClose = document.getElementById('artefactClose');
-    const backToMeetingBtn = document.getElementById('backToMeetingBtn');
     const viewAllBtn = document.getElementById('viewAllBtn');
 
     // ========== HELPERS ==========
@@ -1535,7 +1528,6 @@ const CEREMONIES_DATA = {
         const meeting = getMeetingById(meetingId);
         if (!meeting) return;
 
-        lastOpenedMeetingId = meetingId;
         const category = getCategoryInfo(meeting.category);
 
         // Category badge
@@ -1561,24 +1553,31 @@ const CEREMONIES_DATA = {
         // Outcome
         document.getElementById('detailOutcome').textContent = meeting.outcome;
 
-        // Content (artefacts as clickable links)
+        // Content (artefacts as clickable links + inline preview)
         const contentSection = document.getElementById('contentSection');
         const contentContainer = document.getElementById('detailContent');
+        const contentPreview = document.getElementById('contentPreview');
         
         if (meeting.content.length > 0) {
             contentSection.style.display = 'block';
+            
+            // Render artefact links
             contentContainer.innerHTML = meeting.content.map(contentId => {
                 const artefact = getArtefactById(contentId);
                 if (!artefact) return '';
-                return `<a class="content-link" data-artefact-id="${artefact.id}">📄 ${artefact.name}</a>`;
+                const hasImages = artefact.screenshots && artefact.screenshots.length > 0;
+                return `<a class="content-link ${hasImages ? 'has-images' : ''}" data-artefact-id="${artefact.id}">📄 ${artefact.name} ${hasImages ? '🖼️' : ''}</a>`;
             }).join('');
+
+            // Clear preview initially
+            contentPreview.innerHTML = '';
 
             // Add click handlers to content links
             contentContainer.querySelectorAll('.content-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const artefactId = link.getAttribute('data-artefact-id');
-                    openArtefactDetail(artefactId);
+                    toggleArtefactPreview(artefactId, link);
                 });
             });
         } else {
@@ -1599,39 +1598,55 @@ const CEREMONIES_DATA = {
         document.body.style.overflow = 'hidden';
     }
 
-    function closeMeetingDetail() {
-        detailOverlay.classList.remove('visible');
-        document.body.style.overflow = '';
-    }
-
-    function openArtefactDetail(artefactId) {
+    function toggleArtefactPreview(artefactId, clickedLink) {
         const artefact = getArtefactById(artefactId);
         if (!artefact) return;
 
-        // Fill artefact panel
-        document.getElementById('artefactTitle').textContent = artefact.name;
-        document.getElementById('artefactDescription').textContent = artefact.description;
-        document.getElementById('artefactOutcome').textContent = artefact.outcome;
-        document.getElementById('artefactPreparedBy').textContent = artefact.preparedBy;
-
-        // Screenshot(s)
-        const screenshotSection = document.getElementById('artefactScreenshotSection');
-        const screenshotContainer = document.getElementById('artefactScreenshotContainer');
+        const contentPreview = document.getElementById('contentPreview');
         
-        if (artefact.screenshots && artefact.screenshots.length > 0) {
-            screenshotSection.style.display = 'block';
-            screenshotContainer.innerHTML = artefact.screenshots.map((src, index) => `
-                <div class="screenshot-item">
-                    <img class="screenshot-image" src="${src}" alt="${artefact.name} - example ${index + 1}" onclick="document.getElementById('lightboxImage').src='${src}'; document.getElementById('lightboxOverlay').classList.add('visible');" />
-                </div>
-            `).join('') + '<p class="screenshot-hint">Click image to enlarge</p>';
-        } else {
-            screenshotSection.style.display = 'none';
+        // Toggle: if already showing this artefact, hide it
+        if (contentPreview.getAttribute('data-showing') === artefactId) {
+            contentPreview.innerHTML = '';
+            contentPreview.setAttribute('data-showing', '');
+            clickedLink.classList.remove('expanded');
+            return;
         }
 
-        // Hide meeting overlay, show artefact overlay
-        detailOverlay.classList.remove('visible');
-        artefactOverlay.classList.add('visible');
+        // Mark all links as not expanded, then expand this one
+        document.querySelectorAll('.content-link').forEach(l => l.classList.remove('expanded'));
+        clickedLink.classList.add('expanded');
+        contentPreview.setAttribute('data-showing', artefactId);
+
+        // Build preview content
+        let previewHTML = `<div class="artefact-inline-preview">`;
+        previewHTML += `<h4 class="preview-title">${artefact.name}</h4>`;
+        previewHTML += `<p class="preview-description">${artefact.description}</p>`;
+        
+        // Screenshots
+        if (artefact.screenshots && artefact.screenshots.length > 0) {
+            previewHTML += `<div class="preview-screenshots">`;
+            artefact.screenshots.forEach((src, index) => {
+                previewHTML += `<div class="preview-screenshot-item" data-src="${src}">
+                    <img src="${src}" alt="${artefact.name} - example ${index + 1}" class="preview-screenshot-img" />
+                </div>`;
+            });
+            previewHTML += `<p class="screenshot-hint">Click image to enlarge</p>`;
+            previewHTML += `</div>`;
+        }
+
+        previewHTML += `</div>`;
+        contentPreview.innerHTML = previewHTML;
+
+        // Add lightbox click handlers to screenshots
+        contentPreview.querySelectorAll('.preview-screenshot-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                openLightbox(src);
+            });
+        });
+
+        // Scroll preview into view
+        contentPreview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function openLightbox(imageSrc) {
@@ -1646,16 +1661,9 @@ const CEREMONIES_DATA = {
         lightboxOverlay.classList.remove('visible');
     }
 
-    function closeArtefactDetail() {
-        artefactOverlay.classList.remove('visible');
+    function closeMeetingDetail() {
+        detailOverlay.classList.remove('visible');
         document.body.style.overflow = '';
-    }
-
-    function backToMeeting() {
-        artefactOverlay.classList.remove('visible');
-        if (lastOpenedMeetingId) {
-            openMeetingDetail(lastOpenedMeetingId);
-        }
     }
 
     function updateTimelineActive() {
@@ -1724,17 +1732,6 @@ const CEREMONIES_DATA = {
         }
     });
 
-    // Close artefact detail panel
-    artefactClose.addEventListener('click', closeArtefactDetail);
-    artefactOverlay.addEventListener('click', (e) => {
-        if (e.target === artefactOverlay) {
-            closeArtefactDetail();
-        }
-    });
-
-    // Back to meeting button
-    backToMeetingBtn.addEventListener('click', backToMeeting);
-
     // Lightbox close
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
     document.getElementById('lightboxOverlay').addEventListener('click', (e) => {
@@ -1749,8 +1746,6 @@ const CEREMONIES_DATA = {
             const lightboxOverlay = document.getElementById('lightboxOverlay');
             if (lightboxOverlay.classList.contains('visible')) {
                 closeLightbox();
-            } else if (artefactOverlay.classList.contains('visible')) {
-                closeArtefactDetail();
             } else if (detailOverlay.classList.contains('visible')) {
                 closeMeetingDetail();
             }

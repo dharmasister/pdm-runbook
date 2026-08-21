@@ -82,6 +82,22 @@ body {
     font-weight: 400;
 }
 
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ucl-logo {
+    height: 40px;
+    width: auto;
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+}
+
 .persona-selector {
     display: flex;
     align-items: center;
@@ -490,10 +506,7 @@ body {
     animation: slideUp 0.3s ease;
 }
 
-.artefact-panel {
-    max-width: 600px;
-    border-top: 4px solid var(--ucl-orange);
-}
+/* Artefact panel removed - now inline */
 
 @keyframes slideUp {
     from {
@@ -549,14 +562,7 @@ body {
     color: var(--gray-600);
 }
 
-.artefact-badge {
-    padding: 0.3rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: #FEF3C7;
-    color: #92400E;
-}
+/* Artefact badge removed - now inline */
 
 .detail-title {
     font-size: 1.5rem;
@@ -643,6 +649,77 @@ body {
     border-color: var(--ucl-purple);
 }
 
+.content-link.expanded {
+    background: var(--ucl-purple);
+    color: var(--white);
+    border-color: var(--ucl-purple);
+}
+
+/* Inline artefact preview */
+.content-preview {
+    margin-top: 0.75rem;
+}
+
+.artefact-inline-preview {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.preview-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.5rem;
+}
+
+.preview-description {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.preview-screenshots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.preview-screenshot-item {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.preview-screenshot-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--ucl-purple);
+}
+
+.preview-screenshot-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-hint {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--gray-400);
+    padding: 0.4rem;
+    margin: 0;
+}
+
 /* Attendees */
 .attendees-list {
     display: flex;
@@ -658,58 +735,9 @@ body {
     color: var(--gray-700);
 }
 
-/* Back to meeting button */
-.back-to-meeting-btn {
-    margin-top: 1.5rem;
-    padding: 0.6rem 1.25rem;
-    background: var(--gray-100);
-    border: 1.5px solid var(--gray-300);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--gray-700);
-    cursor: pointer;
-    transition: var(--transition);
-}
+/* Back to meeting button - REMOVED (artefacts now inline) */
 
-.back-to-meeting-btn:hover {
-    background: var(--gray-200);
-    border-color: var(--gray-400);
-}
-
-/* Screenshot gallery in artefact panel */
-.screenshot-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.screenshot-item {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.screenshot-item:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--ucl-purple);
-}
-
-.screenshot-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.screenshot-hint {
-    text-align: center;
-    font-size: 0.7rem;
-    color: var(--gray-400);
-    padding: 0.4rem;
-    margin: 0;
-}
+/* Screenshot gallery in artefact panel - REMOVED (now inline) */
 
 /* Lightbox (full-screen image zoom) */
 .lightbox-overlay {
