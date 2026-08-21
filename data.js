@@ -30,119 +30,136 @@ const CEREMONIES_DATA = {
       name: "CIO LT Playback Deck",
       description: "The PDM gathers all committed outcomes, highlights the key risks and resource challenges in the CIO LT Playback Deck.",
       outcome: "The CIO LT Playback Deck is updated.",
-      preparedBy: "Change Portfolio Manager"
+      preparedBy: "Change Portfolio Manager",
+      screenshots: ["images/cio-lt-playback-deck.png"]
     },
     {
       id: "ti-planning-risks-dependencies",
       name: "TI Planning Risks & Dependencies",
       description: "A cross-portfolio view of key risks, dependencies, and planned initiatives identified during TI Planning. Enables portfolios to share a high-level view of work and ensures interdependencies are incorporated into planning activities.",
       outcome: "All risks and cross-portfolio dependencies are outlined.",
-      preparedBy: "Portfolio Delivery Manager"
+      preparedBy: "Portfolio Delivery Manager",
+      screenshots: ["images/ti-planning-risks-dependencies.png"]
     },
     {
       id: "ti-planning-management-review-deck",
       name: "TI Planning Management Review Deck",
       description: "Slides capturing confirmed planned outcomes, remaining delivery risks, dependencies and delivery confidence ahead of the TI start.",
       outcome: "Confirmed alignment across portfolios, agreed key priorities and dependency resolutions, and actions to address outstanding risks.",
-      preparedBy: "PDMs"
+      preparedBy: "PDMs",
+      screenshots: ["images/ti-planning-management-review-deck.png"]
     },
     {
       id: "portfolio-vision-slide-deck",
       name: "Portfolio Vision Slide Deck",
       description: "A set of prepared slides capturing strategic inputs, priorities, and insights that the portfolio updates ahead of the session to support defining the future vision.",
       outcome: "Portfolio Vision slides are updated with aligned strategic direction, key priorities, and a clearly articulated future state for the portfolio.",
-      preparedBy: "Change Portfolio Chair, Product Management, Platform and Product team representatives"
+      preparedBy: "Change Portfolio Chair, Product Management, Platform and Product team representatives",
+      screenshots: ["images/portfolio-vision-slide-deck-1.png", "images/portfolio-vision-slide-deck-2.png"]
     },
     {
       id: "extended-delivery-report",
       name: "Extended Delivery Report",
       description: "Updated Extended Delivery slides capturing progress against termly outcomes, key risks, dependencies, and required interventions.",
       outcome: "Clear, shared visibility of progress against termly outcomes, with risks, dependencies, and interventions identified and aligned.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["images/extended-delivery-report-1.png", "images/extended-delivery-report-2.png"]
     },
     {
       id: "itppd-staff-log",
       name: "ITPPD Staff Log",
       description: "A record of resource assignments, vacancies, subcontractor contract dates, and budgets used to review workforce capacity.",
       outcome: "Clear view of resource allocation and capacity across portfolios.",
-      preparedBy: "Staff Operations Manager"
+      preparedBy: "Staff Operations Manager",
+      screenshots: []
     },
     {
       id: "finance-plan",
       name: "Finance Plan",
       description: "A monthly update of portfolio financial plans with actual spend provided by the Lean Portfolio Group, reviewed by the PDM to validate forecasts and ensure alignment within allocated budgets.",
       outcome: "Accurate and aligned financial plans, with forecasts validated and managed within budget.",
-      preparedBy: "Change Portfolio Manager, Lean Portfolio Group Rep"
+      preparedBy: "Change Portfolio Manager, Lean Portfolio Group Rep",
+      screenshots: []
     },
     {
       id: "portfolio-status-update",
       name: "Portfolio Status Update",
       description: "Updated portfolio performance slides with delivery status, financials, risks, and progress information.",
       outcome: "Clear visibility of portfolio health and progress for governance review.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["images/portfolio-status-update.png"]
     },
     {
       id: "portfolio-delivery-updates",
       name: "Portfolio Delivery Updates",
       description: "Slides capturing delivery progress, achievements, and any blockers or changes since the last reporting period.",
       outcome: "Stakeholders have a clear picture of delivery performance across portfolios.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["images/portfolio-delivery-updates.png"]
     },
     {
       id: "portfolio-roadmap",
       name: "Portfolio Roadmap",
       description: "A visual representation of planned delivery across Now/Next/Future horizons, categorised by Strategic Change, Enhance, and Maintain.",
       outcome: "Clear visibility of planned work and strategic direction for the portfolio.",
-      preparedBy: "Product Owners, Portfolio Delivery Manager"
+      preparedBy: "Product Owners, Portfolio Delivery Manager",
+      screenshots: ["images/portfolio-roadmap.png"]
     },
     {
       id: "lean-business-case",
       name: "Lean Business Case",
       description: "A structured document for each investment request, capturing objectives, benefits, costs, risks, and delivery approach for DDTC approval.",
       outcome: "Approved investment decisions with clear alignment on priorities and risks.",
-      preparedBy: "Product and Platform Owners"
+      preparedBy: "Product and Platform Owners",
+      screenshots: ["images/lean-business-case.png"]
     },
     {
       id: "committed-outcomes",
       name: "Committed Outcomes",
       description: "The agreed set of outcomes that each portfolio and product team has committed to deliver during the term.",
       outcome: "Clear visibility of what each team has committed to delivering.",
-      preparedBy: "Product Teams, ADMs"
+      preparedBy: "Product Teams, ADMs",
+      screenshots: ["images/committed-outcomes.png"]
     },
     {
       id: "risk-issues-dependencies",
       name: "Risks, Issues & Dependencies",
       description: "A log of identified risks, active issues, and cross-team or cross-portfolio dependencies that require coordination.",
       outcome: "All risks and dependencies are tracked, visible, and actively managed.",
-      preparedBy: "PDM, ADMs"
+      preparedBy: "PDM, ADMs",
+      screenshots: ["images/risk-issues-dependencies.png"]
     },
     {
       id: "jira-backlog",
       name: "JIRA Backlog",
       description: "The prioritised product backlog in JIRA containing user stories, bugs, and tasks ready for sprint planning.",
       outcome: "A refined and prioritised backlog ready for team commitment.",
-      preparedBy: "Product Owner"
+      preparedBy: "Product Owner",
+      screenshots: ["images/jira-backlog.png"]
     },
     {
       id: "sprint-updates",
       name: "Sprint Updates",
       description: "Updates on sprint progress, completed work, and any changes to scope or commitments during the sprint.",
       outcome: "Transparency on sprint progress and any impediments.",
-      preparedBy: "ADM, Product Team"
+      preparedBy: "ADM, Product Team",
+      screenshots: ["images/sprint-updates.png"]
     },
     {
       id: "inspect-adapt-slides",
       name: "Inspect & Adapt Slides",
       description: "A consolidated summary of progress, metrics, insights, and key improvement areas captured from the term review.",
       outcome: "Portfolio Inspect & Adapt slides are updated with portfolio progress against term outcomes, including metrics and key insights.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: []
     },
     {
       id: "vision-of-visions-slides",
       name: "Vision of Visions Slides",
       description: "Updated Vision of Vision slides and a dependency tracking spreadsheet capturing cross-portfolio dependencies, priorities, and alignment inputs.",
       outcome: "Clear cross-portfolio visibility, aligned priorities, and readiness for coordinated TI planning.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: []
     }
   ],
 

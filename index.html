@@ -148,6 +148,13 @@
                 <h2 class="detail-title" id="artefactTitle"></h2>
                 
                 <div class="detail-sections">
+                    <div class="detail-section" id="artefactScreenshotSection">
+                        <h3><span class="section-icon">🖼️</span> Example</h3>
+                        <div class="screenshot-gallery" id="artefactScreenshotContainer">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
                     <div class="detail-section">
                         <h3><span class="section-icon">📌</span> What</h3>
                         <p id="artefactDescription"></p>
@@ -166,6 +173,12 @@
 
                 <button class="back-to-meeting-btn" id="backToMeetingBtn">← Back to Meeting</button>
             </div>
+        </div>
+
+        <!-- Image Lightbox (full-screen zoom) -->
+        <div class="lightbox-overlay" id="lightboxOverlay">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img class="lightbox-image" id="lightboxImage" alt="Artefact example enlarged" />
         </div>
     </main>
 

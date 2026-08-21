@@ -684,6 +684,103 @@ body {
     border-color: var(--gray-400);
 }
 
+/* Screenshot gallery in artefact panel */
+.screenshot-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.screenshot-item {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.screenshot-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--ucl-purple);
+}
+
+.screenshot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-hint {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--gray-400);
+    padding: 0.4rem;
+    margin: 0;
+}
+
+/* Lightbox (full-screen image zoom) */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: pointer;
+}
+
+.lightbox-overlay.visible {
+    display: flex;
+}
+
+.lightbox-image {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    animation: lightboxZoom 0.3s ease;
+}
+
+@keyframes lightboxZoom {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 2001;
+}
+
+.lightbox-close:hover {
+    background: rgba(255,255,255,0.3);
+}
+
 /* ========== FOOTER ========== */
 .site-footer {
     background: var(--gray-800);
@@ -927,6 +1024,13 @@ body {
                 <h2 class="detail-title" id="artefactTitle"></h2>
                 
                 <div class="detail-sections">
+                    <div class="detail-section" id="artefactScreenshotSection">
+                        <h3><span class="section-icon">🖼️</span> Example</h3>
+                        <div class="screenshot-gallery" id="artefactScreenshotContainer">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
                     <div class="detail-section">
                         <h3><span class="section-icon">📌</span> What</h3>
                         <p id="artefactDescription"></p>
@@ -945,6 +1049,12 @@ body {
 
                 <button class="back-to-meeting-btn" id="backToMeetingBtn">← Back to Meeting</button>
             </div>
+        </div>
+
+        <!-- Image Lightbox (full-screen zoom) -->
+        <div class="lightbox-overlay" id="lightboxOverlay">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img class="lightbox-image" id="lightboxImage" alt="Artefact example enlarged" />
         </div>
     </main>
 
@@ -989,119 +1099,136 @@ const CEREMONIES_DATA = {
       name: "CIO LT Playback Deck",
       description: "The PDM gathers all committed outcomes, highlights the key risks and resource challenges in the CIO LT Playback Deck.",
       outcome: "The CIO LT Playback Deck is updated.",
-      preparedBy: "Change Portfolio Manager"
+      preparedBy: "Change Portfolio Manager",
+      screenshots: ["images/cio-lt-playback-deck.png"]
     },
     {
       id: "ti-planning-risks-dependencies",
       name: "TI Planning Risks & Dependencies",
       description: "A cross-portfolio view of key risks, dependencies, and planned initiatives identified during TI Planning. Enables portfolios to share a high-level view of work and ensures interdependencies are incorporated into planning activities.",
       outcome: "All risks and cross-portfolio dependencies are outlined.",
-      preparedBy: "Portfolio Delivery Manager"
+      preparedBy: "Portfolio Delivery Manager",
+      screenshots: ["images/ti-planning-risks-dependencies.png"]
     },
     {
       id: "ti-planning-management-review-deck",
       name: "TI Planning Management Review Deck",
       description: "Slides capturing confirmed planned outcomes, remaining delivery risks, dependencies and delivery confidence ahead of the TI start.",
       outcome: "Confirmed alignment across portfolios, agreed key priorities and dependency resolutions, and actions to address outstanding risks.",
-      preparedBy: "PDMs"
+      preparedBy: "PDMs",
+      screenshots: ["images/ti-planning-management-review-deck.png"]
     },
     {
       id: "portfolio-vision-slide-deck",
       name: "Portfolio Vision Slide Deck",
       description: "A set of prepared slides capturing strategic inputs, priorities, and insights that the portfolio updates ahead of the session to support defining the future vision.",
       outcome: "Portfolio Vision slides are updated with aligned strategic direction, key priorities, and a clearly articulated future state for the portfolio.",
-      preparedBy: "Change Portfolio Chair, Product Management, Platform and Product team representatives"
+      preparedBy: "Change Portfolio Chair, Product Management, Platform and Product team representatives",
+      screenshots: ["images/portfolio-vision-slide-deck-1.png", "images/portfolio-vision-slide-deck-2.png"]
     },
     {
       id: "extended-delivery-report",
       name: "Extended Delivery Report",
       description: "Updated Extended Delivery slides capturing progress against termly outcomes, key risks, dependencies, and required interventions.",
       outcome: "Clear, shared visibility of progress against termly outcomes, with risks, dependencies, and interventions identified and aligned.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["images/extended-delivery-report-1.png", "images/extended-delivery-report-2.png"]
     },
     {
       id: "itppd-staff-log",
       name: "ITPPD Staff Log",
       description: "A record of resource assignments, vacancies, subcontractor contract dates, and budgets used to review workforce capacity.",
       outcome: "Clear view of resource allocation and capacity across portfolios.",
-      preparedBy: "Staff Operations Manager"
+      preparedBy: "Staff Operations Manager",
+      screenshots: []
     },
     {
       id: "finance-plan",
       name: "Finance Plan",
       description: "A monthly update of portfolio financial plans with actual spend provided by the Lean Portfolio Group, reviewed by the PDM to validate forecasts and ensure alignment within allocated budgets.",
       outcome: "Accurate and aligned financial plans, with forecasts validated and managed within budget.",
-      preparedBy: "Change Portfolio Manager, Lean Portfolio Group Rep"
+      preparedBy: "Change Portfolio Manager, Lean Portfolio Group Rep",
+      screenshots: []
     },
     {
       id: "portfolio-status-update",
       name: "Portfolio Status Update",
       description: "Updated portfolio performance slides with delivery status, financials, risks, and progress information.",
       outcome: "Clear visibility of portfolio health and progress for governance review.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["images/portfolio-status-update.png"]
     },
     {
       id: "portfolio-delivery-updates",
       name: "Portfolio Delivery Updates",
       description: "Slides capturing delivery progress, achievements, and any blockers or changes since the last reporting period.",
       outcome: "Stakeholders have a clear picture of delivery performance across portfolios.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: ["images/portfolio-delivery-updates.png"]
     },
     {
       id: "portfolio-roadmap",
       name: "Portfolio Roadmap",
       description: "A visual representation of planned delivery across Now/Next/Future horizons, categorised by Strategic Change, Enhance, and Maintain.",
       outcome: "Clear visibility of planned work and strategic direction for the portfolio.",
-      preparedBy: "Product Owners, Portfolio Delivery Manager"
+      preparedBy: "Product Owners, Portfolio Delivery Manager",
+      screenshots: ["images/portfolio-roadmap.png"]
     },
     {
       id: "lean-business-case",
       name: "Lean Business Case",
       description: "A structured document for each investment request, capturing objectives, benefits, costs, risks, and delivery approach for DDTC approval.",
       outcome: "Approved investment decisions with clear alignment on priorities and risks.",
-      preparedBy: "Product and Platform Owners"
+      preparedBy: "Product and Platform Owners",
+      screenshots: ["images/lean-business-case.png"]
     },
     {
       id: "committed-outcomes",
       name: "Committed Outcomes",
       description: "The agreed set of outcomes that each portfolio and product team has committed to deliver during the term.",
       outcome: "Clear visibility of what each team has committed to delivering.",
-      preparedBy: "Product Teams, ADMs"
+      preparedBy: "Product Teams, ADMs",
+      screenshots: ["images/committed-outcomes.png"]
     },
     {
       id: "risk-issues-dependencies",
       name: "Risks, Issues & Dependencies",
       description: "A log of identified risks, active issues, and cross-team or cross-portfolio dependencies that require coordination.",
       outcome: "All risks and dependencies are tracked, visible, and actively managed.",
-      preparedBy: "PDM, ADMs"
+      preparedBy: "PDM, ADMs",
+      screenshots: ["images/risk-issues-dependencies.png"]
     },
     {
       id: "jira-backlog",
       name: "JIRA Backlog",
       description: "The prioritised product backlog in JIRA containing user stories, bugs, and tasks ready for sprint planning.",
       outcome: "A refined and prioritised backlog ready for team commitment.",
-      preparedBy: "Product Owner"
+      preparedBy: "Product Owner",
+      screenshots: ["images/jira-backlog.png"]
     },
     {
       id: "sprint-updates",
       name: "Sprint Updates",
       description: "Updates on sprint progress, completed work, and any changes to scope or commitments during the sprint.",
       outcome: "Transparency on sprint progress and any impediments.",
-      preparedBy: "ADM, Product Team"
+      preparedBy: "ADM, Product Team",
+      screenshots: ["images/sprint-updates.png"]
     },
     {
       id: "inspect-adapt-slides",
       name: "Inspect & Adapt Slides",
       description: "A consolidated summary of progress, metrics, insights, and key improvement areas captured from the term review.",
       outcome: "Portfolio Inspect & Adapt slides are updated with portfolio progress against term outcomes, including metrics and key insights.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: []
     },
     {
       id: "vision-of-visions-slides",
       name: "Vision of Visions Slides",
       description: "Updated Vision of Vision slides and a dependency tracking spreadsheet capturing cross-portfolio dependencies, priorities, and alignment inputs.",
       outcome: "Clear cross-portfolio visibility, aligned priorities, and readiness for coordinated TI planning.",
-      preparedBy: "Change Portfolio Delivery Manager"
+      preparedBy: "Change Portfolio Delivery Manager",
+      screenshots: []
     }
   ],
 
@@ -1487,9 +1614,36 @@ const CEREMONIES_DATA = {
         document.getElementById('artefactOutcome').textContent = artefact.outcome;
         document.getElementById('artefactPreparedBy').textContent = artefact.preparedBy;
 
+        // Screenshot(s)
+        const screenshotSection = document.getElementById('artefactScreenshotSection');
+        const screenshotContainer = document.getElementById('artefactScreenshotContainer');
+        
+        if (artefact.screenshots && artefact.screenshots.length > 0) {
+            screenshotSection.style.display = 'block';
+            screenshotContainer.innerHTML = artefact.screenshots.map((src, index) => `
+                <div class="screenshot-item">
+                    <img class="screenshot-image" src="${src}" alt="${artefact.name} - example ${index + 1}" onclick="document.getElementById('lightboxImage').src='${src}'; document.getElementById('lightboxOverlay').classList.add('visible');" />
+                </div>
+            `).join('') + '<p class="screenshot-hint">Click image to enlarge</p>';
+        } else {
+            screenshotSection.style.display = 'none';
+        }
+
         // Hide meeting overlay, show artefact overlay
         detailOverlay.classList.remove('visible');
         artefactOverlay.classList.add('visible');
+    }
+
+    function openLightbox(imageSrc) {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightboxImage.src = imageSrc;
+        lightboxOverlay.classList.add('visible');
+    }
+
+    function closeLightbox() {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        lightboxOverlay.classList.remove('visible');
     }
 
     function closeArtefactDetail() {
@@ -1581,10 +1735,21 @@ const CEREMONIES_DATA = {
     // Back to meeting button
     backToMeetingBtn.addEventListener('click', backToMeeting);
 
+    // Lightbox close
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxOverlay').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('lightboxOverlay') || e.target === document.getElementById('lightboxImage')) {
+            closeLightbox();
+        }
+    });
+
     // Keyboard escape to close
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (artefactOverlay.classList.contains('visible')) {
+            const lightboxOverlay = document.getElementById('lightboxOverlay');
+            if (lightboxOverlay.classList.contains('visible')) {
+                closeLightbox();
+            } else if (artefactOverlay.classList.contains('visible')) {
                 closeArtefactDetail();
             } else if (detailOverlay.classList.contains('visible')) {
                 closeMeetingDetail();

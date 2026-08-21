@@ -195,9 +195,36 @@
         document.getElementById('artefactOutcome').textContent = artefact.outcome;
         document.getElementById('artefactPreparedBy').textContent = artefact.preparedBy;
 
+        // Screenshot(s)
+        const screenshotSection = document.getElementById('artefactScreenshotSection');
+        const screenshotContainer = document.getElementById('artefactScreenshotContainer');
+        
+        if (artefact.screenshots && artefact.screenshots.length > 0) {
+            screenshotSection.style.display = 'block';
+            screenshotContainer.innerHTML = artefact.screenshots.map((src, index) => `
+                <div class="screenshot-item">
+                    <img class="screenshot-image" src="${src}" alt="${artefact.name} - example ${index + 1}" onclick="document.getElementById('lightboxImage').src='${src}'; document.getElementById('lightboxOverlay').classList.add('visible');" />
+                </div>
+            `).join('') + '<p class="screenshot-hint">Click image to enlarge</p>';
+        } else {
+            screenshotSection.style.display = 'none';
+        }
+
         // Hide meeting overlay, show artefact overlay
         detailOverlay.classList.remove('visible');
         artefactOverlay.classList.add('visible');
+    }
+
+    function openLightbox(imageSrc) {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightboxImage.src = imageSrc;
+        lightboxOverlay.classList.add('visible');
+    }
+
+    function closeLightbox() {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        lightboxOverlay.classList.remove('visible');
     }
 
     function closeArtefactDetail() {
@@ -289,10 +316,21 @@
     // Back to meeting button
     backToMeetingBtn.addEventListener('click', backToMeeting);
 
+    // Lightbox close
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxOverlay').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('lightboxOverlay') || e.target === document.getElementById('lightboxImage')) {
+            closeLightbox();
+        }
+    });
+
     // Keyboard escape to close
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (artefactOverlay.classList.contains('visible')) {
+            const lightboxOverlay = document.getElementById('lightboxOverlay');
+            if (lightboxOverlay.classList.contains('visible')) {
+                closeLightbox();
+            } else if (artefactOverlay.classList.contains('visible')) {
                 closeArtefactDetail();
             } else if (detailOverlay.classList.contains('visible')) {
                 closeMeetingDetail();
