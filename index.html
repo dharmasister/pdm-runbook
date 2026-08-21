@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Termly Ceremonies — Day in the Life of a Term | UCL ISD</title>
+    <meta name="description" content="A reference guide for Portfolio Delivery Managers at UCL, showing all key termly ceremonies, meetings, artefacts, and their schedule across sprints.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip Navigation Link (for keyboard/screen reader users) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header" role="banner">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-brand">
+                    <img src="Images/ucl-logo-white.png" alt="UCL - University College London" class="ucl-logo" />
+                    <div class="header-titles">
+                        <h1 class="site-title">Key Termly Ceremonies</h1>
+                        <p class="site-subtitle">Day in the Life of a Term</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <nav class="persona-selector" aria-label="Role selector">
+                    <span class="persona-label" id="persona-label">Viewing as:</span>
+                    <div class="persona-badges" role="group" aria-labelledby="persona-label">
+                        <button class="persona-badge active" data-persona="pdm" aria-pressed="true" aria-label="Portfolio Delivery Manager (active)">PDM</button>
+                        <button class="persona-badge disabled" data-persona="adm" aria-disabled="true" aria-label="Agile Delivery Manager - Coming Soon" title="Coming Soon">ADM</button>
+                        <button class="persona-badge disabled" data-persona="po" aria-disabled="true" aria-label="Product Owner - Coming Soon" title="Coming Soon">PO</button>
+                        <button class="persona-badge disabled" data-persona="pl" aria-disabled="true" aria-label="Portfolio Lead - Coming Soon" title="Coming Soon">PL</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content" role="main">
+        <!-- Timeline Section -->
+        <section class="timeline-section" aria-label="Sprint timeline navigation">
+            <p class="sr-only">Select a sprint to view its ceremonies. Each sprint card shows the number of meetings in that sprint.</p>
+            <div class="timeline-header">
+                <span class="timeline-label-start">Start of Term</span>
+                <span class="timeline-label-end">End of Term</span>
+            </div>
+            <div class="timeline-track" role="toolbar" aria-label="Sprint selection">
+                <div class="timeline-connector" aria-hidden="true"></div>
+                <div class="timeline-cards">
+                    <button class="sprint-card active" data-sprint="sprint-1" aria-label="Sprint 1, currently selected" aria-pressed="true">
+                        <span class="sprint-card-number" aria-hidden="true">1</span>
+                        <span class="sprint-card-name">Sprint 1</span>
+                        <span class="sprint-card-count" data-sprint-count="sprint-1"></span>
+                    </button>
+                    <button class="sprint-card" data-sprint="sprint-2" aria-label="Sprint 2" aria-pressed="false">
+                        <span class="sprint-card-number" aria-hidden="true">2</span>
+                        <span class="sprint-card-name">Sprint 2</span>
+                        <span class="sprint-card-count" data-sprint-count="sprint-2"></span>
+                    </button>
+                    <button class="sprint-card" data-sprint="sprint-3" aria-label="Sprint 3" aria-pressed="false">
+                        <span class="sprint-card-number" aria-hidden="true">3</span>
+                        <span class="sprint-card-name">Sprint 3</span>
+                        <span class="sprint-card-count" data-sprint-count="sprint-3"></span>
+                    </button>
+                    <button class="sprint-card" data-sprint="sprint-4" aria-label="Sprint 4" aria-pressed="false">
+                        <span class="sprint-card-number" aria-hidden="true">4</span>
+                        <span class="sprint-card-name">Sprint 4</span>
+                        <span class="sprint-card-count" data-sprint-count="sprint-4"></span>
+                    </button>
+                    <button class="sprint-card" data-sprint="sprint-5" aria-label="Sprint 5" aria-pressed="false">
+                        <span class="sprint-card-number" aria-hidden="true">5</span>
+                        <span class="sprint-card-name">Sprint 5</span>
+                        <span class="sprint-card-count" data-sprint-count="sprint-5"></span>
+                    </button>
+                    <button class="sprint-card" data-sprint="sprint-6-ia" aria-label="Sprint 6, Innovation and Adapt" aria-pressed="false">
+                        <span class="sprint-card-number" aria-hidden="true">I&A</span>
+                        <span class="sprint-card-name">Sprint 6</span>
+                        <span class="sprint-card-count" data-sprint-count="sprint-6-ia"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="view-all-container">
+                <button class="view-all-btn" id="viewAllBtn" aria-pressed="false" aria-label="View all sprints together">View All Sprints</button>
+            </div>
+        </section>
+
+        <!-- Sprint Header -->
+        <section class="sprint-header" id="sprintHeader" aria-live="polite">
+            <h2 class="sprint-title" id="sprintTitle">Sprint 1</h2>
+            <div class="sprint-meta">
+                <span class="sprint-count" id="sprintCount" aria-live="polite"></span>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="category-filter" aria-label="Filter meetings by category" role="toolbar">
+            <button class="filter-btn active" data-category="all" aria-pressed="true">All</button>
+            <button class="filter-btn" data-category="ti-planning" aria-pressed="false">
+                <span class="filter-icon" aria-hidden="true">📋</span> TI Planning
+            </button>
+            <button class="filter-btn" data-category="delivery" aria-pressed="false">
+                <span class="filter-icon" aria-hidden="true">🚀</span> Delivery
+            </button>
+            <button class="filter-btn" data-category="finances" aria-pressed="false">
+                <span class="filter-icon" aria-hidden="true">💰</span> Finances
+            </button>
+            <button class="filter-btn" data-category="lbcs-ddtc" aria-pressed="false">
+                <span class="filter-icon" aria-hidden="true">📊</span> LBCs & DDTC
+            </button>
+        </section>
+
+        <!-- Meetings Grid -->
+        <section class="meetings-grid" id="meetingsGrid" aria-label="List of ceremonies" aria-live="polite">
+            <!-- Populated by JavaScript -->
+        </section>
+
+        <!-- Meeting Detail Panel (Modal) -->
+        <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+            <div class="detail-panel" id="detailPanel">
+                <button class="detail-close" id="detailClose" aria-label="Close meeting details">&times;</button>
+                <div class="detail-header">
+                    <span class="detail-category-badge" id="detailCategoryBadge"></span>
+                    <span class="detail-sprint-badge" id="detailSprintBadge"></span>
+                </div>
+                <h2 class="detail-title" id="detailTitle"></h2>
+                
+                <div class="detail-sections">
+                    <div class="detail-section">
+                        <h3><span class="section-icon" aria-hidden="true">🎤</span> Presenter</h3>
+                        <p id="detailPresenter"></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon" aria-hidden="true">🎯</span> Why</h3>
+                        <p id="detailWhy"></p>
+                        <div class="outcome-box" id="detailOutcomeBox">
+                            <strong>Outcome:</strong>
+                            <p id="detailOutcome"></p>
+                        </div>
+                    </div>
+
+                    <div class="detail-section" id="contentSection">
+                        <h3><span class="section-icon" aria-hidden="true">📎</span> Content</h3>
+                        <p class="content-instructions">Click an artefact below to view its description and example screenshot.</p>
+                        <div class="content-links" id="detailContent" role="group" aria-label="Artefacts for this meeting"></div>
+                        <div class="content-preview" id="contentPreview" aria-live="polite"></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><span class="section-icon" aria-hidden="true">👥</span> Who</h3>
+                        <div id="detailAttendees"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Lightbox (full-screen zoom) -->
+        <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Enlarged artefact image">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close enlarged image">&times;</button>
+            <img class="lightbox-image" id="lightboxImage" alt="" />
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-content">
+            <p>UCL Information Services Division — Portfolio Delivery Management</p>
+            <p class="footer-note">Single source of truth for key termly ceremonies and artefacts</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
